@@ -1,0 +1,2582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MND Homes - Visual Website & Content Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #003f69;
+      --primary-dark: #002b48;
+      --primary-light: #0d5c96;
+      --accent: #f26522;
+      --accent-hover: #e05413;
+      --accent-soft: rgba(242, 101, 34, 0.12);
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-subtle: #f1f5f9;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+      --border: #e2e8f0;
+      --border-focus: #3b82f6;
+      --success: #10b981;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 8px 24px rgba(0, 63, 105, 0.08);
+      --shadow-lg: 0 20px 40px rgba(0, 63, 105, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .app-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #ffffff;
+      padding: 16px 28px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand-section { display: flex; align-items: center; gap: 14px; }
+    .brand-badge {
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      font-size: 15px;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(242, 101, 34, 0.35);
+    }
+
+    .brand-info h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    .brand-info p { font-size: 12px; color: #94a3b8; }
+
+    .header-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .search-box { position: relative; }
+    .search-box input {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 30px;
+      padding: 8px 16px 8px 38px;
+      color: #ffffff;
+      font-size: 13px;
+      width: 240px;
+      transition: all 0.2s;
+    }
+    .search-box input:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.2);
+      border-color: #ffffff;
+      width: 290px;
+    }
+    .search-box input::placeholder { color: #cbd5e1; }
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    .view-toggle {
+      display: flex;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 3px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .view-toggle button {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .view-toggle button.active {
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .btn-global-copy {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-global-copy:hover { background: #ffffff; color: var(--primary); }
+
+    .nav-tabs-wrapper {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 73px;
+      z-index: 990;
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-tabs {
+      display: flex;
+      overflow-x: auto;
+      gap: 4px;
+      padding: 8px 24px;
+      max-width: 1440px;
+      margin: 0 auto;
+      scrollbar-width: thin;
+    }
+    .nav-tab-btn {
+      background: transparent;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 24px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .nav-tab-btn:hover { background: var(--bg-subtle); color: var(--primary); }
+    .nav-tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 63, 105, 0.2);
+    }
+    .badge-count {
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 10px;
+      background: rgba(0,0,0,0.08);
+    }
+    .nav-tab-btn.active .badge-count {
+      background: rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+
+    .main-content {
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 32px 24px 60px 24px;
+      flex: 1;
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: fadeIn 0.25s ease-in-out; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-banner {
+      background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px 32px;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    .page-banner-title h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .page-banner-title p { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
+    .banner-actions { display: flex; gap: 10px; }
+
+    .website-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .website-section:hover { box-shadow: var(--shadow-md); border-color: #cbd5e1; }
+
+    .section-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .section-seq-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+    .section-title-wrap { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+    .section-title-wrap h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .copy-btn {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      padding: 5px 11px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+    .copy-btn:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+    .copy-btn:active { transform: translateY(0); }
+    .copy-btn.copied {
+      background: var(--success) !important;
+      border-color: var(--success) !important;
+      color: #ffffff !important;
+    }
+
+    .text-block-wrapper {
+      position: relative;
+      margin-bottom: 14px;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px dashed transparent;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .text-block-wrapper:hover { background: #f8fafc; border-color: #cbd5e1; }
+    .text-block-wrapper .block-copy-trigger {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+    .text-block-wrapper:hover .block-copy-trigger { opacity: 1; }
+
+    .hero-display-box {
+      background: linear-gradient(135deg, #002e4d 0%, var(--primary) 100%);
+      color: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-tagline {
+      display: inline-block;
+      background: rgba(242, 101, 34, 0.25);
+      border: 1px solid rgba(242, 101, 34, 0.4);
+      color: #ff9d66;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .hero-h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+    .badge-need {
+      background: rgba(255, 255, 255, 0.15);
+      border-left: 4px solid var(--accent);
+      padding: 10px 16px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 16px 0;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .hero-actions { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+    .btn-site-primary {
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      padding: 12px 26px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(242, 101, 34, 0.4);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn-site-secondary {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .images-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+    .image-asset-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .image-asset-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .img-preview-box {
+      width: 100%;
+      height: 190px;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .img-preview-box img { max-width: 100%; max-height: 100%; object-fit: cover; }
+    .img-overlay-zoom {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(0, 0, 0, 0.65);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .image-asset-card:hover .img-overlay-zoom { opacity: 1; }
+    .img-details-bar {
+      padding: 12px 14px;
+      background: #ffffff;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .img-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .img-path-tag {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: monospace;
+      background: #f8fafc;
+      padding: 4px 6px;
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+      word-break: break-all;
+    }
+
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+    .service-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .service-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: #cbd5e1; }
+    .service-icon-box {
+      width: 58px;
+      height: 58px;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .service-icon-box img { max-width: 36px; max-height: 36px; }
+    .service-card h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .service-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
+
+    .causes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+    .cause-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cause-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .cause-card-img { height: 200px; width: 100%; background: #f1f5f9; position: relative; }
+    .cause-card-img img { width: 100%; height: 100%; object-fit: cover; }
+    .cause-percentage-badge {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .cause-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .cause-body h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .cause-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; flex: 1; }
+    .cause-progress-metrics {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .metric-item span { display: block; font-size: 11px; color: var(--text-light); text-transform: uppercase; font-weight: 700; }
+    .metric-item strong { font-size: 14px; color: var(--primary); }
+
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 24px; }
+    .team-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .team-photo-wrap { height: 250px; width: 100%; background: #e2e8f0; position: relative; overflow: hidden; }
+    .team-photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .team-badge-role {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+    }
+    .team-details { padding: 18px 20px; }
+    .team-details h4 { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+    .team-details .role-sub { font-size: 13px; color: var(--accent); font-weight: 600; margin-bottom: 12px; }
+    .team-quote-box {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      background: #f8fafc;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--accent);
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 24px 0; }
+    .stat-metric-card {
+      background: linear-gradient(135deg, #002b48 0%, var(--primary) 100%);
+      color: #ffffff;
+      padding: 24px;
+      border-radius: var(--radius-md);
+      text-align: center;
+      position: relative;
+    }
+    .stat-metric-card h3 { font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 800; color: #ff9d66; margin-bottom: 4px; }
+    .stat-metric-card p { font-size: 13px; color: #cbd5e1; font-weight: 600; }
+
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+    .faq-header {
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      background: #ffffff;
+      user-select: none;
+    }
+    .faq-header h5 { font-size: 15px; font-weight: 700; color: var(--primary); }
+    .faq-body { padding: 0 20px 16px 20px; font-size: 14px; color: var(--text-muted); line-height: 1.6; display: block; }
+
+    .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .contact-card-box { background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 28px; }
+    .contact-item-row { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+    .contact-icon-pill {
+      width: 44px;
+      height: 44px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .contact-item-info h5 { font-size: 14px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+    .contact-item-info p { font-size: 14px; color: var(--text-muted); }
+    .map-frame-box { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border); height: 360px; }
+    .map-frame-box iframe { width: 100%; height: 100%; border: none; }
+
+    .board-mode-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 13.5px; }
+    .board-mode-table th { background: var(--primary); color: #ffffff; padding: 12px 16px; text-align: left; font-weight: 600; font-size: 13px; }
+    .board-mode-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); vertical-align: top; background: #ffffff; }
+    .board-mode-table tr:hover td { background: #f8fafc; }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      max-width: 900px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-lg);
+    }
+    .modal-header { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
+    .modal-header h4 { font-size: 16px; color: var(--primary); }
+    .modal-close-btn { background: transparent; border: none; font-size: 24px; cursor: pointer; color: #64748b; }
+    .modal-img-wrap { padding: 20px; text-align: center; background: #0f172a; }
+    .modal-img-wrap img { max-width: 100%; max-height: 60vh; object-fit: contain; border-radius: var(--radius-sm); }
+    .modal-footer {
+      padding: 16px 20px;
+      background: #f8fafc;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .toast-popup {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1e293b;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-size: 13.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      z-index: 3000;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.25s, transform 0.25s;
+      pointer-events: none;
+    }
+    .toast-popup.show { opacity: 1; transform: translateY(0); }
+    .toast-icon {
+      background: var(--success);
+      color: #fff;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .app-footer {
+      background: #002b48;
+      color: #94a3b8;
+      text-align: center;
+      padding: 24px;
+      font-size: 13px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .app-footer strong { color: #ffffff; }
+
+    @media (max-width: 900px) {
+      .hero-display-box { grid-template-columns: 1fr; }
+      .contact-layout { grid-template-columns: 1fr; }
+      .hero-h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="brand-section">
+      <div class="brand-badge">MND HOMES</div>
+      <div class="brand-info">
+        <h1>Visual Content & Asset Hub</h1>
+        <p>MND Homes Production Content Hub & Asset Library &bull; Deployed on Vercel</p>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="globalSearchInput" placeholder="Search data (e.g. Kharian, 500, Riaz)..." oninput="handleSearch(this.value)">
+      </div>
+
+      <div class="view-toggle">
+        <button id="btnViewVisual" class="active" onclick="switchViewMode('visual')">
+          <span>🌐</span> Visual Preview
+        </button>
+        <button id="btnViewBoard" onclick="switchViewMode('board')">
+          <span>📋</span> Copy Board
+        </button>
+      </div>
+
+      <button class="btn-global-copy" onclick="copyEntireSiteJson()">
+        <span>💾</span> Copy All Data (JSON)
+      </button>
+    </div>
+  </header>
+
+  <div class="nav-tabs-wrapper">
+    <nav class="nav-tabs">
+      <button class="nav-tab-btn active" onclick="switchTab('tab-home')">
+        <span>🏠</span> Home Page <span class="badge-count">9 Sections</span>
+      </button>
+      <button class="nav-tab-btn" onclick="switchTab('tab-about')">
+        <span>ℹ️</span> About Us <span class="badge-count">Pillars & Vision</span>
+      </button>
+      <button class="nav-tab-btn" onclick="switchTab('tab-team')">
+        <span>👥</span> Team & Leadership <span class="badge-count">14</span>
+      </button>
+      <button class="nav-tab-btn" onclick="switchTab('tab-causes')">
+        <span>🎯</span> Campaigns & Causes <span class="badge-count">5</span>
+      </button>
+      <button class="nav-tab-btn" onclick="switchTab('tab-services')">
+        <span>🛠️</span> Charity Services <span class="badge-count">4</span>
+      </button>
+      <button class="nav-tab-btn" onclick="switchTab('tab-gallery')">
+        <span>🖼️</span> Photo Gallery <span class="badge-count">6</span>
+      </button>
+      <button class="nav-tab-btn" onclick="switchTab('tab-testimonials')">
+        <span>💬</span> Testimonials <span class="badge-count">8</span>
+      </button>
+      <button class="nav-tab-btn" onclick="switchTab('tab-faqs')">
+        <span>❓</span> FAQs <span class="badge-count">4</span>
+      </button>
+      <button class="nav-tab-btn" onclick="switchTab('tab-contact')">
+        <span>📞</span> Contact Us <span class="badge-count">Kharian, PK</span>
+      </button>
+      <button class="nav-tab-btn" onclick="switchTab('tab-products')">
+        <span>🛍️</span> Products & Shop <span class="badge-count">5</span>
+      </button>
+    </nav>
+  </div>
+
+  <main class="main-content">
+
+    <!-- TAB: HOME PAGE -->
+    <div id="tab-home" class="tab-panel active">
+      <div class="page-banner">
+        <div class="page-banner-title">
+          <h2>🏠 Home Page (Front Page)</h2>
+          <p>Yahan pura home page theek usi tarteeb (sequence) mein hai jaisa original website par tha.</p>
+        </div>
+        <div class="banner-actions">
+          <button class="copy-btn" onclick="copyPageText('tab-home')">📋 Copy Entire Home Page Text</button>
+        </div>
+      </div>
+
+      
+    <section class="website-section" data-section-name="Hero Banner">
+      <div class="section-header-bar">
+        <div class="section-title-wrap">
+          <span class="section-seq-tag">Section 1</span>
+          <h3>Hero Banner (Main Screen)</h3>
+        </div>
+        <button class="copy-btn" onclick="copySectionText(this)">📋 Copy Section</button>
+      </div>
+
+      <div class="hero-display-box">
+        <div>
+          <div class="hero-tagline">Give Hope For The Homeless</div>
+          <h2 class="hero-h1">Helping Each Other Can Make World Better</h2>
+          <div class="badge-need">⚡ 626,300+ Children in Pakistan Need School</div>
+          <div class="hero-actions">
+            <span class="btn-site-primary">Contact Us</span>
+            <span class="btn-site-secondary">Become a Volunteer</span>
+          </div>
+        </div>
+        <div>
+          <div class="image-asset-card">
+            <div class="img-preview-box">
+              <img src="./images/kid.png" alt="Kid" onerror="this.src='./images/kid.png'">
+              <button class="img-overlay-zoom" onclick="openLightbox('./images/kid.png', 'Hero Kid')">🔍</button>
+            </div>
+            <div class="img-details-bar">
+              <span class="img-name">Hero Kid Feature Image</span>
+              <span class="img-path-tag">./images/kid.png</span>
+              <button class="copy-btn" onclick="copyText('./images/kid.png', this)">📁 Copy Path</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 24px;">
+        <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--primary);">Attached Banner Graphics & Assets:</h4>
+        <div class="images-strip">
+          
+      <div class="image-asset-card">
+        <div class="img-preview-box">
+          <img src="./images/kid.png" alt="Kid with Hope" onerror="this.src='./images/kid.png'">
+          <button class="img-overlay-zoom" onclick="openLightbox('./images/kid.png', 'Kid with Hope')">🔍</button>
+        </div>
+        <div class="img-details-bar">
+          <span class="img-name">Kid with Hope</span>
+          <span class="img-path-tag">./images/kid.png</span>
+          <button class="copy-btn" onclick="copyText('./images/kid.png', this)">📁 Copy Path</button>
+        </div>
+      </div>
+      <div class="image-asset-card">
+        <div class="img-preview-box">
+          <img src="./images/about.png" alt="About Children Banner" onerror="this.src='./images/kid.png'">
+          <button class="img-overlay-zoom" onclick="openLightbox('./images/about.png', 'About Children Banner')">🔍</button>
+        </div>
+        <div class="img-details-bar">
+          <span class="img-name">About Children Banner</span>
+          <span class="img-path-tag">./images/about.png</span>
+          <button class="copy-btn" onclick="copyText('./images/about.png', this)">📁 Copy Path</button>
+        </div>
+      </div>
+      <div class="image-asset-card">
+        <div class="img-preview-box">
+          <img src="./images/hand-shape1-2.png" alt="Hand Shape Deco" onerror="this.src='./images/kid.png'">
+          <button class="img-overlay-zoom" onclick="openLightbox('./images/hand-shape1-2.png', 'Hand Shape Deco')">🔍</button>
+        </div>
+        <div class="img-details-bar">
+          <span class="img-name">Hand Shape Deco</span>
+          <span class="img-path-tag">./images/hand-shape1-2.png</span>
+          <button class="copy-btn" onclick="copyText('./images/hand-shape1-2.png', this)">📁 Copy Path</button>
+        </div>
+      </div>
+        </div>
+      </div>
+    </section>
+      
+    <section class="website-section" data-section-name="Services Overview">
+      <div class="section-header-bar">
+        <div class="section-title-wrap">
+          <span class="section-seq-tag">Section 2</span>
+          <h3>Serving Humanity For Everyone</h3>
+        </div>
+        <button class="copy-btn" onclick="copySectionText(this)">📋 Copy Section</button>
+      </div>
+      <div class="services-grid">
+        
+      <div class="service-card">
+        <div class="service-icon-box">
+          <img src="./images/medical.png" alt="Health" onerror="this.src='./images/medical.png'">
+        </div>
+        <div class="text-block-wrapper">
+          <h4>Health</h4>
+          <button class="copy-btn block-copy-trigger" onclick="copyText('Health', this)">Copy</button>
+        </div>
+        <div class="text-block-wrapper">
+          <p>We deliver compassionate medical care, ensuring every person receives treatment with dignity, no matter their background or condition.</p>
+          <button class="copy-btn block-copy-trigger" onclick="copyText('We deliver compassionate medical care, ensuring every person receives treatment with dignity, no matter their background or condition.', this)">Copy</button>
+        </div>
+        <div style="margin-top: 14px; font-size: 11px;">
+          <span class="img-path-tag">./images/medical.png</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-box">
+          <img src="./images/education.png" alt="Education" onerror="this.src='./images/medical.png'">
+        </div>
+        <div class="text-block-wrapper">
+          <h4>Education</h4>
+          <button class="copy-btn block-copy-trigger" onclick="copyText('Education', this)">Copy</button>
+        </div>
+        <div class="text-block-wrapper">
+          <p>We provide inclusive and compassionate educational support, empowering every individual to learn with dignity, regardless of their background or circumstances.</p>
+          <button class="copy-btn block-copy-trigger" onclick="copyText('We provide inclusive and compassionate educational support, empowering every individual to learn with dignity, regardless of their background or circumstances.', this)">Copy</button>
+        </div>
+        <div style="margin-top: 14px; font-size: 11px;">
+          <span class="img-path-tag">./images/education.png</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-box">
+          <img src="./images/hotel.png" alt="Accommodation" onerror="this.src='./images/medical.png'">
+        </div>
+        <div class="text-block-wrapper">
+          <h4>Accommodation</h4>
+          <button class="copy-btn block-copy-trigger" onclick="copyText('Accommodation', this)">Copy</button>
+        </div>
+        <div class="text-block-wrapper">
+          <p>Providing safe and supportive accommodation with compassion. We offer shelter and meals, serving every person with dignity regardless of background or circumstance.</p>
+          <button class="copy-btn block-copy-trigger" onclick="copyText('Providing safe and supportive accommodation with compassion. We offer shelter and meals, serving every person with dignity regardless of background or circumstance.', this)">Copy</button>
+        </div>
+        <div style="margin-top: 14px; font-size: 11px;">
+          <span class="img-path-tag">./images/hotel.png</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-box">
+          <img src="./images/service-card-icon1-1-1-2.svg" alt="Food" onerror="this.src='./images/medical.png'">
+        </div>
+        <div class="text-block-wrapper">
+          <h4>Food</h4>
+          <button class="copy-btn block-copy-trigger" onclick="copyText('Food', this)">Copy</button>
+        </div>
+        <div class="text-block-wrapper">
+          <p>Providing essential support with compassion from nutritious food. We serve every person with dignity, regardless of background or circumstance.</p>
+          <button class="copy-btn block-copy-trigger" onclick="copyText('Providing essential support with compassion from nutritious food. We serve every person with dignity, regardless of background or circumstance.', this)">Copy</button>
+        </div>
+        <div style="margin-top: 14px; font-size: 11px;">
+          <span class="img-path-tag">./images/service-card-icon1-1-1-2.svg</span>
+        </div>
+      </div>
+      </div>
+    </section>
+      
+    <section class="website-section" data-section-name="About Section">
+      <div class="section-header-bar">
+        <div class="section-title-wrap">
+          <span class="section-seq-tag">Section 3</span>
+          <h3>Humanity Prevails (About Us)</h3>
+        </div>
+        <button class="copy-btn" onclick="copySectionText(this)">📋 Copy Section</button>
+      </div>
+      <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; align-items: start;">
+        <div>
+          <div class="badge-need" style="display: inline-block; margin-top: 0;">⚡ 626,300+ Children in Pakistan Need School</div>
+          
+      <div class="text-block-wrapper">
+        <p style="font-size: 14.5px; line-height: 1.7; color: #334155;">At MND Homes, we believe that Humanity Prevails. With a mission rooted in compassion and service, we are dedicated to supporting the most vulnerable in our society.</p>
+        <button class="copy-btn block-copy-trigger" onclick="copyText('At MND Homes, we believe that Humanity Prevails. With a mission rooted in compassion and service, we are dedicated to supporting the most vulnerable in our society.', this)">Copy Text</button>
+      </div>
+      <div class="text-block-wrapper">
+        <p style="font-size: 14.5px; line-height: 1.7; color: #334155;">In our first phase, we are inducting 500 children, providing them with safe accommodation, care, and the dignity every child deserves. This milestone reflects our commitment to working for humanity step by step, life by life.</p>
+        <button class="copy-btn block-copy-trigger" onclick="copyText('In our first phase, we are inducting 500 children, providing them with safe accommodation, care, and the dignity every child deserves. This milestone reflects our commitment to working for humanity step by step, life by life.', this)">Copy Text</button>
+      </div>
+      <div class="text-block-wrapper">
+        <p style="font-size: 14.5px; line-height: 1.7; color: #334155;">Our vision is simple yet powerful: to create a future where no child is left without shelter, support, and hope. At MND Homes, every action we take is a testament to the belief that when humanity prevails, communities thrive.</p>
+        <button class="copy-btn block-copy-trigger" onclick="copyText('Our vision is simple yet powerful: to create a future where no child is left without shelter, support, and hope. At MND Homes, every action we take is a testament to the belief that when humanity prevails, communities thrive.', this)">Copy Text</button>
+      </div>
+      <div class="text-block-wrapper">
+        <p style="font-size: 14.5px; line-height: 1.7; color: #334155;">This is just the beginning of our journey. By inducting 500 children in the first phase, we are laying the foundation for a larger vision — to expand our reach and provide thousands more with the shelter, security, and care they deserve. With the support of our community and donors, MND Homes is determined to turn compassion into action, ensuring that humanity truly prevails.</p>
+        <button class="copy-btn block-copy-trigger" onclick="copyText('This is just the beginning of our journey. By inducting 500 children in the first phase, we are laying the foundation for a larger vision — to expand our reach and provide thousands more with the shelter, security, and care they deserve. With the support of our community and donors, MND Homes is determined to turn compassion into action, ensuring that humanity truly prevails.', this)">Copy Text</button>
+      </div>
+        </div>
+        <div>
+          <div class="images-strip" style="grid-template-columns: 1fr;">
+            
+      <div class="image-asset-card">
+        <div class="img-preview-box" style="height: 220px;">
+          <img src="./images/about.png" alt="About Main" onerror="this.src='./images/about.png'">
+          <button class="img-overlay-zoom" onclick="openLightbox('./images/about.png', 'About Main')">🔍</button>
+        </div>
+        <div class="img-details-bar">
+          <span class="img-name">About Main</span>
+          <span class="img-path-tag">./images/about.png</span>
+          <button class="copy-btn" onclick="copyText('./images/about.png', this)">📁 Copy Path</button>
+        </div>
+      </div>
+      <div class="image-asset-card">
+        <div class="img-preview-box" style="height: 220px;">
+          <img src="./images/about_3.png" alt="Children Smile" onerror="this.src='./images/about.png'">
+          <button class="img-overlay-zoom" onclick="openLightbox('./images/about_3.png', 'Children Smile')">🔍</button>
+        </div>
+        <div class="img-details-bar">
+          <span class="img-name">Children Smile</span>
+          <span class="img-path-tag">./images/about_3.png</span>
+          <button class="copy-btn" onclick="copyText('./images/about_3.png', this)">📁 Copy Path</button>
+        </div>
+      </div>
+          </div>
+        </div>
+      </div>
+    </section>
+      
+    <section class="website-section" data-section-name="Causes & Campaigns">
+      <div class="section-header-bar">
+        <div class="section-title-wrap">
+          <span class="section-seq-tag">Section 4</span>
+          <h3>See Your Impact: Transparent Donation Causes</h3>
+        </div>
+        <button class="copy-btn" onclick="copySectionText(this)">📋 Copy Section</button>
+      </div>
+      <div class="causes-grid">
+        
+      <div class="cause-card">
+        <div class="cause-card-img">
+          <img src="./images/donation-279x233.png" alt="Sponsor a child" onerror="this.src='./images/donation-279x233.png'">
+          <span class="cause-percentage-badge">100%</span>
+        </div>
+        <div class="cause-body">
+          <div class="text-block-wrapper">
+            <h4>Sponsor a child</h4>
+            <button class="copy-btn block-copy-trigger" onclick="copyText('Sponsor a child', this)">Copy</button>
+          </div>
+          <div class="text-block-wrapper">
+            <p class="cause-desc">Direct sponsorship for orphaned and needy children covering education, housing, clothing, and nutrition.</p>
+            <button class="copy-btn block-copy-trigger" onclick="copyText('Direct sponsorship for orphaned and needy children covering education, housing, clothing, and nutrition.', this)">Copy</button>
+          </div>
+          <div class="cause-progress-metrics">
+            <div class="metric-item">
+              <span>Raised</span>
+              <strong>₨ 0</strong>
+            </div>
+            <div class="metric-item">
+              <span>Goal</span>
+              <strong>Unlimited</strong>
+            </div>
+          </div>
+          <div style="font-size: 11px;">
+            <span class="img-path-tag">./images/donation-279x233.png</span>
+          </div>
+        </div>
+      </div>
+      <div class="cause-card">
+        <div class="cause-card-img">
+          <img src="./images/education-1-279x233.png" alt="Sponsor a Room" onerror="this.src='./images/donation-279x233.png'">
+          <span class="cause-percentage-badge">3%</span>
+        </div>
+        <div class="cause-body">
+          <div class="text-block-wrapper">
+            <h4>Sponsor a Room</h4>
+            <button class="copy-btn block-copy-trigger" onclick="copyText('Sponsor a Room', this)">Copy</button>
+          </div>
+          <div class="text-block-wrapper">
+            <p class="cause-desc">Help build and maintain safe, furnished living rooms for inducted children in MND Homes welfare complex.</p>
+            <button class="copy-btn block-copy-trigger" onclick="copyText('Help build and maintain safe, furnished living rooms for inducted children in MND Homes welfare complex.', this)">Copy</button>
+          </div>
+          <div class="cause-progress-metrics">
+            <div class="metric-item">
+              <span>Raised</span>
+              <strong>₨ 1,050.00</strong>
+            </div>
+            <div class="metric-item">
+              <span>Goal</span>
+              <strong>₨ 35,000.00</strong>
+            </div>
+          </div>
+          <div style="font-size: 11px;">
+            <span class="img-path-tag">./images/education-1-279x233.png</span>
+          </div>
+        </div>
+      </div>
+      <div class="cause-card">
+        <div class="cause-card-img">
+          <img src="./images/health-279x233.png" alt="Access to Care is a Right" onerror="this.src='./images/donation-279x233.png'">
+          <span class="cause-percentage-badge">0.5%</span>
+        </div>
+        <div class="cause-body">
+          <div class="text-block-wrapper">
+            <h4>Access to Care is a Right</h4>
+            <button class="copy-btn block-copy-trigger" onclick="copyText('Access to Care is a Right', this)">Copy</button>
+          </div>
+          <div class="text-block-wrapper">
+            <p class="cause-desc">Providing vital medical treatments, clinical checkups, and necessary medications for vulnerable families.</p>
+            <button class="copy-btn block-copy-trigger" onclick="copyText('Providing vital medical treatments, clinical checkups, and necessary medications for vulnerable families.', this)">Copy</button>
+          </div>
+          <div class="cause-progress-metrics">
+            <div class="metric-item">
+              <span>Raised</span>
+              <strong>₨ 500.00</strong>
+            </div>
+            <div class="metric-item">
+              <span>Goal</span>
+              <strong>₨ 100,000.00</strong>
+            </div>
+          </div>
+          <div style="font-size: 11px;">
+            <span class="img-path-tag">./images/health-279x233.png</span>
+          </div>
+        </div>
+      </div>
+      <div class="cause-card">
+        <div class="cause-card-img">
+          <img src="./images/clean-water-354x233.jpg" alt="Raise Fund for Clean &amp; Healthy Water" onerror="this.src='./images/donation-279x233.png'">
+          <span class="cause-percentage-badge">0%</span>
+        </div>
+        <div class="cause-body">
+          <div class="text-block-wrapper">
+            <h4>Raise Fund for Clean &amp; Healthy Water</h4>
+            <button class="copy-btn block-copy-trigger" onclick="copyText('Raise Fund for Clean & Healthy Water', this)">Copy</button>
+          </div>
+          <div class="text-block-wrapper">
+            <p class="cause-desc">Installing clean drinking water filtration plants to prevent waterborne diseases in underdeveloped localities.</p>
+            <button class="copy-btn block-copy-trigger" onclick="copyText('Installing clean drinking water filtration plants to prevent waterborne diseases in underdeveloped localities.', this)">Copy</button>
+          </div>
+          <div class="cause-progress-metrics">
+            <div class="metric-item">
+              <span>Raised</span>
+              <strong>₨ 0</strong>
+            </div>
+            <div class="metric-item">
+              <span>Goal</span>
+              <strong>₨ 100,000.00</strong>
+            </div>
+          </div>
+          <div style="font-size: 11px;">
+            <span class="img-path-tag">./images/clean-water-354x233.jpg</span>
+          </div>
+        </div>
+      </div>
+      <div class="cause-card">
+        <div class="cause-card-img">
+          <img src="./images/helping-child-354x233.jpg" alt="Help Children Poor Insurance &amp; Medical" onerror="this.src='./images/donation-279x233.png'">
+          <span class="cause-percentage-badge">0%</span>
+        </div>
+        <div class="cause-body">
+          <div class="text-block-wrapper">
+            <h4>Help Children Poor Insurance &amp; Medical</h4>
+            <button class="copy-btn block-copy-trigger" onclick="copyText('Help Children Poor Insurance & Medical', this)">Copy</button>
+          </div>
+          <div class="text-block-wrapper">
+            <p class="cause-desc">Emergency healthcare coverage and urgent treatments for low-income and destitute children.</p>
+            <button class="copy-btn block-copy-trigger" onclick="copyText('Emergency healthcare coverage and urgent treatments for low-income and destitute children.', this)">Copy</button>
+          </div>
+          <div class="cause-progress-metrics">
+            <div class="metric-item">
+              <span>Raised</span>
+              <strong>₨ 0</strong>
+            </div>
+            <div class="metric-item">
+              <span>Goal</span>
+              <strong>₨ 10,000.00</strong>
+            </div>
+          </div>
+          <div style="font-size: 11px;">
+            <span class="img-path-tag">./images/helping-child-354x233.jpg</span>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+      
+    <section class="website-section" style="background: linear-gradient(135deg, var(--primary) 0%, #001f33 100%); color: #fff;" data-section-name="CTA Box">
+      <div class="section-header-bar" style="border-color: rgba(255,255,255,0.15);">
+        <div class="section-title-wrap">
+          <span class="section-seq-tag" style="background: rgba(242, 101, 34, 0.3); color: #ff9d66;">Section 5</span>
+          <h3 style="color: #fff;">Call To Action Banner</h3>
+        </div>
+        <button class="copy-btn" onclick="copySectionText(this)">📋 Copy Section</button>
+      </div>
+      <div style="text-align: center; padding: 24px 0;">
+        <h2 style="font-family: 'Outfit'; font-size: 28px; margin-bottom: 20px; color: #fff;">Our doors are always open to people who want to support each other</h2>
+        <span class="btn-site-primary">Get Involved</span>
+      </div>
+    </section>
+      
+    <section class="website-section" data-section-name="Success Story">
+      <div class="section-header-bar">
+        <div class="section-title-wrap">
+          <span class="section-seq-tag">Section 6</span>
+          <h3>Hope and Opportunity for the Underserved</h3>
+        </div>
+        <button class="copy-btn" onclick="copySectionText(this)">📋 Copy Section</button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 32px; align-items: center;">
+        <div class="image-asset-card">
+          <div class="img-preview-box" style="height: 240px;">
+            <img src="./images/cause-1.png" alt="Story" onerror="this.src='./images/cause-1.png'">
+          </div>
+          <div class="img-details-bar">
+            <span class="img-name">Ali Mehmood Story Picture</span>
+            <span class="img-path-tag">./images/cause-1.png</span>
+            <button class="copy-btn" onclick="copyText('./images/cause-1.png', this)">📁 Copy Path</button>
+          </div>
+        </div>
+
+        <div>
+          <span style="color: var(--accent); font-weight: 700; font-size: 13px; text-transform: uppercase;">Success Story</span>
+          <h3 style="font-family: 'Outfit'; font-size: 22px; color: var(--primary); margin: 6px 0 14px 0;">Ali Mehmood (05 Years of Experience)</h3>
+          <div class="team-quote-box" style="font-size: 15px; margin-bottom: 18px;">
+            "Every success story is a testament to your generosity and the strength of those we serve. Your donations spark real change — turning compassion into lasting impact."
+          </div>
+          <p style="font-size: 13.5px; color: var(--text-muted);">Support MND Homes through our secure online donation system — quick, safe, and easy. Choose your preferred payment method and make a one-time contribution with confidence.</p>
+        </div>
+      </div>
+    </section>
+      
+    <section class="website-section" data-section-name="Impact Numbers">
+      <div class="section-header-bar">
+        <div class="section-title-wrap">
+          <span class="section-seq-tag">Section 7</span>
+          <h3>We Always Help The Needy People</h3>
+        </div>
+        <button class="copy-btn" onclick="copySectionText(this)">📋 Copy Section</button>
+      </div>
+
+      <p style="font-size: 14.5px; color: var(--text-muted); margin-bottom: 20px;">Discover the inspiring stories of individuals and communities transformed by our programs. Our success stories highlight the real-life impact of your donations.</p>
+      <div class="stats-row">
+        
+      <div class="stat-metric-card">
+        <h3>15K+</h3>
+        <p>Incredible Volunteers</p>
+        <button class="copy-btn" style="margin-top: 10px; background: rgba(255,255,255,0.2); color: #fff; border: none;" onclick="copyText('15K+ Incredible Volunteers', this)">Copy</button>
+      </div>
+      <div class="stat-metric-card">
+        <h3>1K+</h3>
+        <p>Successful Campaigns</p>
+        <button class="copy-btn" style="margin-top: 10px; background: rgba(255,255,255,0.2); color: #fff; border: none;" onclick="copyText('1K+ Successful Campaigns', this)">Copy</button>
+      </div>
+      <div class="stat-metric-card">
+        <h3>400+</h3>
+        <p>Monthly Donors</p>
+        <button class="copy-btn" style="margin-top: 10px; background: rgba(255,255,255,0.2); color: #fff; border: none;" onclick="copyText('400+ Monthly Donors', this)">Copy</button>
+      </div>
+      <div class="stat-metric-card">
+        <h3>35K+</h3>
+        <p>Team Support</p>
+        <button class="copy-btn" style="margin-top: 10px; background: rgba(255,255,255,0.2); color: #fff; border: none;" onclick="copyText('35K+ Team Support', this)">Copy</button>
+      </div>
+      </div>
+    </section>
+      
+    <section class="website-section" data-section-name="Leadership Testimonials">
+      <div class="section-header-bar">
+        <div class="section-title-wrap">
+          <span class="section-seq-tag">Section 8</span>
+          <h3>What People Say About Our Charity</h3>
+        </div>
+        <button class="copy-btn" onclick="copySectionText(this)">📋 Copy Section</button>
+      </div>
+      <div class="team-grid">
+        
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/Mr-riaz-4.png" alt="Riaz Dad" onerror="this.src='./images/Mr-riaz-4.png'">
+          <span class="team-badge-role">⭐ 5.0 Rating</span>
+        </div>
+        <div class="team-details">
+          <h4>Riaz Dad</h4>
+          <div class="role-sub">Patron In-Chief</div>
+          <div class="team-quote-box">"MND Homes is not just an NGO, it is a movement dedicated to building a strong foundation for the nation. Guided by our long-term vision, this initiative is committed to creating lasting change across Pakistan. Our key projects focus on providing accommodation for orphans, promoting education, advancing welfare, and fostering prosperity throughout the country. We are proud to be part of this inspiring mission and to contribute towards building a brighter, stronger future for generations to come."</div>
+          <div style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <button class="copy-btn" onclick="copyText('Riaz Dad (Patron In-Chief): MND Homes is not just an NGO, it is a movement dedicated to building a strong foundation for the nation. Guided by our long-term vision, this initiative is committed to creating lasting change across Pakistan. Our key projects focus on providing accommodation for orphans, promoting education, advancing welfare, and fostering prosperity throughout the country. We are proud to be part of this inspiring mission and to contribute towards building a brighter, stronger future for generations to come.', this)">📋 Copy Quote</button>
+            <button class="copy-btn" onclick="copyText('./images/Mr-riaz-4.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/testimonial_1.png" alt="Asim Mahmood Khan" onerror="this.src='./images/Mr-riaz-4.png'">
+          <span class="team-badge-role">⭐ 5.0 Rating</span>
+        </div>
+        <div class="team-details">
+          <h4>Asim Mahmood Khan</h4>
+          <div class="role-sub">CEO, Chairman</div>
+          <div class="team-quote-box">"Before MND Homes stepped in, I had lost all hope. Now I go to school every day, I have new friends, and I dream of becoming a teacher. MND Homes has given me more than just support — they’ve given me a future."</div>
+          <div style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <button class="copy-btn" onclick="copyText('Asim Mahmood Khan (CEO, Chairman): Before MND Homes stepped in, I had lost all hope. Now I go to school every day, I have new friends, and I dream of becoming a teacher. MND Homes has given me more than just support — they’ve given me a future.', this)">📋 Copy Quote</button>
+            <button class="copy-btn" onclick="copyText('./images/testimonial_1.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/testimonial_4-1.png" alt="Aqsa Asim Khan" onerror="this.src='./images/Mr-riaz-4.png'">
+          <span class="team-badge-role">⭐ 4.8 Rating</span>
+        </div>
+        <div class="team-details">
+          <h4>Aqsa Asim Khan</h4>
+          <div class="role-sub">Vice Chairman</div>
+          <div class="team-quote-box">"Supporting MND Homes has been one of the most rewarding experiences of my life. Knowing that my donation is helping educate children, feed families, and provide shelter to orphans gives me peace of heart. MND Homes truly delivers hope where it&#39;s needed most."</div>
+          <div style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <button class="copy-btn" onclick="copyText('Aqsa Asim Khan (Vice Chairman): Supporting MND Homes has been one of the most rewarding experiences of my life. Knowing that my donation is helping educate children, feed families, and provide shelter to orphans gives me peace of heart. MND Homes truly delivers hope where it\'s needed most.', this)">📋 Copy Quote</button>
+            <button class="copy-btn" onclick="copyText('./images/testimonial_4-1.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/testimonial_3.png" alt="Col. Mumtaz Ahmed Tarar (Retd)" onerror="this.src='./images/Mr-riaz-4.png'">
+          <span class="team-badge-role">⭐ 4.6 Rating</span>
+        </div>
+        <div class="team-details">
+          <h4>Col. Mumtaz Ahmed Tarar (Retd)</h4>
+          <div class="role-sub">Trustee</div>
+          <div class="team-quote-box">"Volunteering with MND Homes has changed the way I see the world. It’s incredible to work with a team that’s so dedicated to lifting others up. Whether it&#39;s food drives, school support, or orphan care — every effort is made with sincerity and compassion."</div>
+          <div style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <button class="copy-btn" onclick="copyText('Col. Mumtaz Ahmed Tarar (Retd) (Trustee): Volunteering with MND Homes has changed the way I see the world. It’s incredible to work with a team that’s so dedicated to lifting others up. Whether it\'s food drives, school support, or orphan care — every effort is made with sincerity and compassion.', this)">📋 Copy Quote</button>
+            <button class="copy-btn" onclick="copyText('./images/testimonial_3.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/testimonial_4.png" alt="Esha Khan" onerror="this.src='./images/Mr-riaz-4.png'">
+          <span class="team-badge-role">⭐ 4.7 Rating</span>
+        </div>
+        <div class="team-details">
+          <h4>Esha Khan</h4>
+          <div class="role-sub">Information Secretary</div>
+          <div class="team-quote-box">"MND Homes is more than an NGO — it’s a movement of kindness. Their projects in education and healthcare have brought real, lasting change to our village. We are proud to work alongside them in building a brighter tomorrow."</div>
+          <div style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <button class="copy-btn" onclick="copyText('Esha Khan (Information Secretary): MND Homes is more than an NGO — it’s a movement of kindness. Their projects in education and healthcare have brought real, lasting change to our village. We are proud to work alongside them in building a brighter tomorrow.', this)">📋 Copy Quote</button>
+            <button class="copy-btn" onclick="copyText('./images/testimonial_4.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/testimonial_2.png" alt="Abdul Rehman Goraya" onerror="this.src='./images/Mr-riaz-4.png'">
+          <span class="team-badge-role">⭐ 4.7 Rating</span>
+        </div>
+        <div class="team-details">
+          <h4>Abdul Rehman Goraya</h4>
+          <div class="role-sub">General Secretary</div>
+          <div class="team-quote-box">"MND Homes is more than an NGO — it’s a movement of kindness. Under the guidance of our leadership, their projects in education and healthcare have brought real, lasting change to our village. We are proud to work alongside them."</div>
+          <div style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <button class="copy-btn" onclick="copyText('Abdul Rehman Goraya (General Secretary): MND Homes is more than an NGO — it’s a movement of kindness. Under the guidance of our leadership, their projects in education and healthcare have brought real, lasting change to our village. We are proud to work alongside them.', this)">📋 Copy Quote</button>
+            <button class="copy-btn" onclick="copyText('./images/testimonial_2.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/9.png" alt="Hafiz Zubair A. Ghani" onerror="this.src='./images/Mr-riaz-4.png'">
+          <span class="team-badge-role">⭐ 4.7 Rating</span>
+        </div>
+        <div class="team-details">
+          <h4>Hafiz Zubair A. Ghani</h4>
+          <div class="role-sub">Finance Secretary</div>
+          <div class="team-quote-box">"With utmost financial transparency and responsibility, our projects ensure that aid reaches the right hands without a moment of delay."</div>
+          <div style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <button class="copy-btn" onclick="copyText('Hafiz Zubair A. Ghani (Finance Secretary): With utmost financial transparency and responsibility, our projects ensure that aid reaches the right hands without a moment of delay.', this)">📋 Copy Quote</button>
+            <button class="copy-btn" onclick="copyText('./images/9.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/6-2.png" alt="Khalid Mahmood" onerror="this.src='./images/Mr-riaz-4.png'">
+          <span class="team-badge-role">⭐ 4.7 Rating</span>
+        </div>
+        <div class="team-details">
+          <h4>Khalid Mahmood</h4>
+          <div class="role-sub">Joint Secretary</div>
+          <div class="team-quote-box">"Through dedication and teamwork in education and healthcare, our community efforts are paving the way for sustainable prosperity."</div>
+          <div style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <button class="copy-btn" onclick="copyText('Khalid Mahmood (Joint Secretary): Through dedication and teamwork in education and healthcare, our community efforts are paving the way for sustainable prosperity.', this)">📋 Copy Quote</button>
+            <button class="copy-btn" onclick="copyText('./images/6-2.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+      
+    <section class="website-section" data-section-name="FAQs">
+      <div class="section-header-bar">
+        <div class="section-title-wrap">
+          <span class="section-seq-tag">Section 9</span>
+          <h3>Have Any Questions For Us?</h3>
+        </div>
+        <button class="copy-btn" onclick="copySectionText(this)">📋 Copy Section</button>
+      </div>
+      <div class="faq-list">
+        
+      <div class="faq-item">
+        <div class="faq-header" onclick="toggleFaq('faq-home-0')">
+          <h5>1. What does MND Homes do?</h5>
+          <button class="copy-btn" onclick="event.stopPropagation(); copyText('What does MND Homes do?\\nMND Homes provides safe housing, healthcare support, food aid, and educational opportunities to underserved individuals and families.', this)">Copy</button>
+        </div>
+        <div id="faq-home-0" class="faq-body">
+          <p>MND Homes provides safe housing, healthcare support, food aid, and educational opportunities to underserved individuals and families.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-header" onclick="toggleFaq('faq-home-1')">
+          <h5>2. Who benefits from MND Homes’ services?</h5>
+          <button class="copy-btn" onclick="event.stopPropagation(); copyText('Who benefits from MND Homes’ services?\\nWe serve vulnerable communities, including orphans, widows, the elderly, and low-income families in need of shelter, support, and basic essentials.', this)">Copy</button>
+        </div>
+        <div id="faq-home-1" class="faq-body">
+          <p>We serve vulnerable communities, including orphans, widows, the elderly, and low-income families in need of shelter, support, and basic essentials.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-header" onclick="toggleFaq('faq-home-2')">
+          <h5>3. How is my donation used?</h5>
+          <button class="copy-btn" onclick="event.stopPropagation(); copyText('How is my donation used?\\nWe ensure your donation goes directly toward our housing projects, food distribution, medical aid, and education initiatives. Transparency and accountability are our priorities.', this)">Copy</button>
+        </div>
+        <div id="faq-home-2" class="faq-body">
+          <p>We ensure your donation goes directly toward our housing projects, food distribution, medical aid, and education initiatives. Transparency and accountability are our priorities.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-header" onclick="toggleFaq('faq-home-3')">
+          <h5>4. Does MND Homes partner with other organizations?</h5>
+          <button class="copy-btn" onclick="event.stopPropagation(); copyText('Does MND Homes partner with other organizations?\\nYes, we collaborate with local and international nonprofits to expand our reach and impact.', this)">Copy</button>
+        </div>
+        <div id="faq-home-3" class="faq-body">
+          <p>Yes, we collaborate with local and international nonprofits to expand our reach and impact.</p>
+        </div>
+      </div>
+      </div>
+    </section>
+    </div>
+
+    <!-- TAB: ABOUT US -->
+    <div id="tab-about" class="tab-panel">
+      <div class="page-banner">
+        <div class="page-banner-title">
+          <h2>ℹ️ About Us Page Details</h2>
+          <p>MND Homes ka complete mission statement, vision, 500 children phase 1, aur work process.</p>
+        </div>
+        <div class="banner-actions">
+          <button class="copy-btn" onclick="copyPageText('tab-about')">📋 Copy Entire About Page Text</button>
+        </div>
+      </div>
+
+      <section class="website-section">
+        <div class="section-header-bar">
+          <div class="section-title-wrap">
+            <h3>Vision & Core Mission: "Humanity Prevails"</h3>
+          </div>
+          <button class="copy-btn" onclick="copySectionText(this)">📋 Copy Section</button>
+        </div>
+
+        <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; margin-bottom: 24px;">
+          <h4 style="color: var(--primary); font-size: 18px; margin-bottom: 12px;">🌟 First Phase 500 Children Induction Milestone</h4>
+          <p id="visionTextBlock" style="font-size: 14.5px; line-height: 1.8; color: #334155; margin-bottom: 14px;">
+            At MND Homes, we believe that <strong>Humanity Prevails</strong>. With a mission rooted in compassion and service, we are dedicated to supporting the most vulnerable in our society.<br><br>
+            In our first phase, we are inducting <strong>500 children</strong>, providing them with safe accommodation, care, and the dignity every child deserves. This milestone reflects our commitment to working for humanity step by step, life by life.<br><br>
+            Our vision is simple yet powerful: to create a future where no child is left without shelter, support, and hope. At MND Homes, every action we take is a testament to the belief that when humanity prevails, communities thrive.<br><br>
+            This is just the beginning of our journey. By inducting 500 children in the first phase, we are laying the foundation for a larger vision — to expand our reach and provide thousands more with the shelter, security, and care they deserve. With the support of our community and donors, MND Homes is determined to turn compassion into action, ensuring that humanity truly prevails.
+          </p>
+          <button class="copy-btn" onclick="copyText(document.getElementById('visionTextBlock').innerText, this)">📋 Copy Vision Text</button>
+        </div>
+
+        <h4 style="color: var(--primary); font-size: 18px; margin-bottom: 16px;">Donation & Aid Work Process (3 Steps)</h4>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+          <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 22px;">
+            <div style="font-size: 28px; font-weight: 800; color: var(--accent); margin-bottom: 8px;">01</div>
+            <h4 style="font-size: 16px; color: var(--primary); margin-bottom: 8px;">Awareness &amp; Engagement</h4>
+            <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6;">Your contribution is immediately directed to the specific project or emergency need you supported. We do not delay, every rupee goes to work fast.</p>
+            <button class="copy-btn" style="margin-top: 14px;" onclick="copyText(this.parentElement.innerText, this)">Copy Step</button>
+          </div>
+          <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 22px;">
+            <div style="font-size: 28px; font-weight: 800; color: var(--accent); margin-bottom: 8px;">02</div>
+            <h4 style="font-size: 16px; color: var(--primary); margin-bottom: 8px;">Donation Collection</h4>
+            <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6;">Our finance and project teams verify all transactions and allocate funds to the respective program or location, based on urgency and need.</p>
+            <button class="copy-btn" style="margin-top: 14px;" onclick="copyText(this.parentElement.innerText, this)">Copy Step</button>
+          </div>
+          <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 22px;">
+            <div style="font-size: 28px; font-weight: 800; color: var(--accent); margin-bottom: 8px;">03</div>
+            <h4 style="font-size: 16px; color: var(--primary); margin-bottom: 8px;">Impact and Accountability</h4>
+            <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6;">We closely monitor progress, gather reports, and ensure aid reaches the right people at the right time with accountability at every step.</p>
+            <button class="copy-btn" style="margin-top: 14px;" onclick="copyText(this.parentElement.innerText, this)">Copy Step</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- TAB: TEAM -->
+    
+    <div id="tab-team" class="tab-panel">
+      <div class="page-banner">
+        <div class="page-banner-title">
+          <h2>👥 Team & Board Leadership</h2>
+          <p>MND Homes ke Patron In-Chief, Chairman, Trustees, aur Volunteer Team ka pura record.</p>
+        </div>
+        <div class="banner-actions">
+          <button class="copy-btn" onclick="copyPageText('tab-team')">📋 Copy Entire Team Data</button>
+        </div>
+      </div>
+
+      <section class="website-section">
+        <div class="section-header-bar">
+          <div class="section-title-wrap">
+            <span class="section-seq-tag">Board & Leadership</span>
+            <h3>Key Executive Leadership</h3>
+          </div>
+        </div>
+        <div class="team-grid">
+          
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/Mr-riaz-4.png" alt="Riaz Dad" onerror="this.src='./images/Mr-riaz-4.png'">
+          <span class="team-badge-role">Patron In-Chief</span>
+        </div>
+        <div class="team-details">
+          <h4>Riaz Dad</h4>
+          <div class="role-sub">Patron In-Chief</div>
+          <div class="team-quote-box">"MND Homes is not just an NGO, it is a movement dedicated to building a strong foundation for the nation. Guided by our long-term vision, this initiative is committed to creating lasting change across Pakistan. Our key projects focus on providing accommodation for orphans, promoting education, advancing welfare, and fostering prosperity throughout the country. We are proud to be part of this inspiring mission and to contribute towards building a brighter, stronger future for generations to come."</div>
+          <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="copy-btn" onclick="copyText('Riaz Dad - Patron In-Chief', this)">Copy Name</button>
+            <button class="copy-btn" onclick="copyText('MND Homes is not just an NGO, it is a movement dedicated to building a strong foundation for the nation. Guided by our long-term vision, this initiative is committed to creating lasting change across Pakistan. Our key projects focus on providing accommodation for orphans, promoting education, advancing welfare, and fostering prosperity throughout the country. We are proud to be part of this inspiring mission and to contribute towards building a brighter, stronger future for generations to come.', this)">Copy Bio</button>
+            <button class="copy-btn" onclick="copyText('./images/Mr-riaz-4.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/testimonial_1.png" alt="Asim Mahmood Khan" onerror="this.src='./images/Mr-riaz-4.png'">
+          <span class="team-badge-role">CEO, Chairman</span>
+        </div>
+        <div class="team-details">
+          <h4>Asim Mahmood Khan</h4>
+          <div class="role-sub">CEO, Chairman</div>
+          <div class="team-quote-box">"Before MND Homes stepped in, I had lost all hope. Now I go to school every day, I have new friends, and I dream of becoming a teacher. MND Homes has given me more than just support — they’ve given me a future."</div>
+          <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="copy-btn" onclick="copyText('Asim Mahmood Khan - CEO, Chairman', this)">Copy Name</button>
+            <button class="copy-btn" onclick="copyText('Before MND Homes stepped in, I had lost all hope. Now I go to school every day, I have new friends, and I dream of becoming a teacher. MND Homes has given me more than just support — they’ve given me a future.', this)">Copy Bio</button>
+            <button class="copy-btn" onclick="copyText('./images/testimonial_1.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/testimonial_4-1.png" alt="Aqsa Asim Khan" onerror="this.src='./images/Mr-riaz-4.png'">
+          <span class="team-badge-role">Vice Chairman</span>
+        </div>
+        <div class="team-details">
+          <h4>Aqsa Asim Khan</h4>
+          <div class="role-sub">Vice Chairman</div>
+          <div class="team-quote-box">"Supporting MND Homes has been one of the most rewarding experiences of my life. Knowing that my donation is helping educate children, feed families, and provide shelter to orphans gives me peace of heart. MND Homes truly delivers hope where it&#39;s needed most."</div>
+          <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="copy-btn" onclick="copyText('Aqsa Asim Khan - Vice Chairman', this)">Copy Name</button>
+            <button class="copy-btn" onclick="copyText('Supporting MND Homes has been one of the most rewarding experiences of my life. Knowing that my donation is helping educate children, feed families, and provide shelter to orphans gives me peace of heart. MND Homes truly delivers hope where it\'s needed most.', this)">Copy Bio</button>
+            <button class="copy-btn" onclick="copyText('./images/testimonial_4-1.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/testimonial_3.png" alt="Col. Mumtaz Ahmed Tarar (Retd)" onerror="this.src='./images/Mr-riaz-4.png'">
+          <span class="team-badge-role">Trustee</span>
+        </div>
+        <div class="team-details">
+          <h4>Col. Mumtaz Ahmed Tarar (Retd)</h4>
+          <div class="role-sub">Trustee</div>
+          <div class="team-quote-box">"Volunteering with MND Homes has changed the way I see the world. It’s incredible to work with a team that’s so dedicated to lifting others up. Whether it&#39;s food drives, school support, or orphan care — every effort is made with sincerity and compassion."</div>
+          <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="copy-btn" onclick="copyText('Col. Mumtaz Ahmed Tarar (Retd) - Trustee', this)">Copy Name</button>
+            <button class="copy-btn" onclick="copyText('Volunteering with MND Homes has changed the way I see the world. It’s incredible to work with a team that’s so dedicated to lifting others up. Whether it\'s food drives, school support, or orphan care — every effort is made with sincerity and compassion.', this)">Copy Bio</button>
+            <button class="copy-btn" onclick="copyText('./images/testimonial_3.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/testimonial_4.png" alt="Esha Khan" onerror="this.src='./images/Mr-riaz-4.png'">
+          <span class="team-badge-role">Information Secretary</span>
+        </div>
+        <div class="team-details">
+          <h4>Esha Khan</h4>
+          <div class="role-sub">Information Secretary</div>
+          <div class="team-quote-box">"MND Homes is more than an NGO — it’s a movement of kindness. Their projects in education and healthcare have brought real, lasting change to our village. We are proud to work alongside them in building a brighter tomorrow."</div>
+          <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="copy-btn" onclick="copyText('Esha Khan - Information Secretary', this)">Copy Name</button>
+            <button class="copy-btn" onclick="copyText('MND Homes is more than an NGO — it’s a movement of kindness. Their projects in education and healthcare have brought real, lasting change to our village. We are proud to work alongside them in building a brighter tomorrow.', this)">Copy Bio</button>
+            <button class="copy-btn" onclick="copyText('./images/testimonial_4.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/testimonial_2.png" alt="Abdul Rehman Goraya" onerror="this.src='./images/Mr-riaz-4.png'">
+          <span class="team-badge-role">General Secretary</span>
+        </div>
+        <div class="team-details">
+          <h4>Abdul Rehman Goraya</h4>
+          <div class="role-sub">General Secretary</div>
+          <div class="team-quote-box">"MND Homes is more than an NGO — it’s a movement of kindness. Under the guidance of our leadership, their projects in education and healthcare have brought real, lasting change to our village. We are proud to work alongside them."</div>
+          <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="copy-btn" onclick="copyText('Abdul Rehman Goraya - General Secretary', this)">Copy Name</button>
+            <button class="copy-btn" onclick="copyText('MND Homes is more than an NGO — it’s a movement of kindness. Under the guidance of our leadership, their projects in education and healthcare have brought real, lasting change to our village. We are proud to work alongside them.', this)">Copy Bio</button>
+            <button class="copy-btn" onclick="copyText('./images/testimonial_2.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/9.png" alt="Hafiz Zubair A. Ghani" onerror="this.src='./images/Mr-riaz-4.png'">
+          <span class="team-badge-role">Finance Secretary</span>
+        </div>
+        <div class="team-details">
+          <h4>Hafiz Zubair A. Ghani</h4>
+          <div class="role-sub">Finance Secretary</div>
+          <div class="team-quote-box">"With utmost financial transparency and responsibility, our projects ensure that aid reaches the right hands without a moment of delay."</div>
+          <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="copy-btn" onclick="copyText('Hafiz Zubair A. Ghani - Finance Secretary', this)">Copy Name</button>
+            <button class="copy-btn" onclick="copyText('With utmost financial transparency and responsibility, our projects ensure that aid reaches the right hands without a moment of delay.', this)">Copy Bio</button>
+            <button class="copy-btn" onclick="copyText('./images/9.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/6-2.png" alt="Khalid Mahmood" onerror="this.src='./images/Mr-riaz-4.png'">
+          <span class="team-badge-role">Joint Secretary</span>
+        </div>
+        <div class="team-details">
+          <h4>Khalid Mahmood</h4>
+          <div class="role-sub">Joint Secretary</div>
+          <div class="team-quote-box">"Through dedication and teamwork in education and healthcare, our community efforts are paving the way for sustainable prosperity."</div>
+          <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="copy-btn" onclick="copyText('Khalid Mahmood - Joint Secretary', this)">Copy Name</button>
+            <button class="copy-btn" onclick="copyText('Through dedication and teamwork in education and healthcare, our community efforts are paving the way for sustainable prosperity.', this)">Copy Bio</button>
+            <button class="copy-btn" onclick="copyText('./images/6-2.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+        </div>
+
+        <div class="section-header-bar" style="margin-top: 40px;">
+          <div class="section-title-wrap">
+            <span class="section-seq-tag">Volunteers</span>
+            <h3>Active Field Volunteers</h3>
+          </div>
+        </div>
+        <div class="team-grid">
+          
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/team_3_3-2-100x100.png" alt="Michel Connor" onerror="this.src='./images/team_3_3-2-208x232.png'">
+          <span class="team-badge-role">Volunteer</span>
+        </div>
+        <div class="team-details">
+          <h4>Michel Connor</h4>
+          <div class="role-sub">Volunteer Specialist</div>
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">Active in community outreach and child support.</p>
+          <div style="display: flex; gap: 8px;">
+            <button class="copy-btn" onclick="copyText('Michel Connor - Volunteer Specialist', this)">Copy Name</button>
+            <button class="copy-btn" onclick="copyText('./images/team_3_3-2-100x100.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/team_3_2-1-2-100x100.png" alt="Jessica Lauren" onerror="this.src='./images/team_3_3-2-208x232.png'">
+          <span class="team-badge-role">Volunteer</span>
+        </div>
+        <div class="team-details">
+          <h4>Jessica Lauren</h4>
+          <div class="role-sub">Field Coordinator</div>
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">Active in community outreach and child support.</p>
+          <div style="display: flex; gap: 8px;">
+            <button class="copy-btn" onclick="copyText('Jessica Lauren - Field Coordinator', this)">Copy Name</button>
+            <button class="copy-btn" onclick="copyText('./images/team_3_2-1-2-100x100.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/team_3_8-2.png" alt="Daniel Thomas" onerror="this.src='./images/team_3_3-2-208x232.png'">
+          <span class="team-badge-role">Volunteer</span>
+        </div>
+        <div class="team-details">
+          <h4>Daniel Thomas</h4>
+          <div class="role-sub">Logistics Volunteer</div>
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">Active in community outreach and child support.</p>
+          <div style="display: flex; gap: 8px;">
+            <button class="copy-btn" onclick="copyText('Daniel Thomas - Logistics Volunteer', this)">Copy Name</button>
+            <button class="copy-btn" onclick="copyText('./images/team_3_8-2.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/team_3_5-2-100x100.png" alt="Emma Mary" onerror="this.src='./images/team_3_3-2-208x232.png'">
+          <span class="team-badge-role">Volunteer</span>
+        </div>
+        <div class="team-details">
+          <h4>Emma Mary</h4>
+          <div class="role-sub">Education Volunteer</div>
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">Active in community outreach and child support.</p>
+          <div style="display: flex; gap: 8px;">
+            <button class="copy-btn" onclick="copyText('Emma Mary - Education Volunteer', this)">Copy Name</button>
+            <button class="copy-btn" onclick="copyText('./images/team_3_5-2-100x100.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/team_3_6-2-100x100.png" alt="Alexander Joseph" onerror="this.src='./images/team_3_3-2-208x232.png'">
+          <span class="team-badge-role">Volunteer</span>
+        </div>
+        <div class="team-details">
+          <h4>Alexander Joseph</h4>
+          <div class="role-sub">Healthcare Volunteer</div>
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">Active in community outreach and child support.</p>
+          <div style="display: flex; gap: 8px;">
+            <button class="copy-btn" onclick="copyText('Alexander Joseph - Healthcare Volunteer', this)">Copy Name</button>
+            <button class="copy-btn" onclick="copyText('./images/team_3_6-2-100x100.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="./images/team_3_7-2-100x100.png" alt="Olivia Patricia" onerror="this.src='./images/team_3_3-2-208x232.png'">
+          <span class="team-badge-role">Volunteer</span>
+        </div>
+        <div class="team-details">
+          <h4>Olivia Patricia</h4>
+          <div class="role-sub">Outreach Volunteer</div>
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">Active in community outreach and child support.</p>
+          <div style="display: flex; gap: 8px;">
+            <button class="copy-btn" onclick="copyText('Olivia Patricia - Outreach Volunteer', this)">Copy Name</button>
+            <button class="copy-btn" onclick="copyText('./images/team_3_7-2-100x100.png', this)">📁 Path</button>
+          </div>
+        </div>
+      </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- TAB: CAUSES -->
+    <div id="tab-causes" class="tab-panel">
+      <div class="page-banner">
+        <div class="page-banner-title">
+          <h2>🎯 Campaigns & Donation Causes</h2>
+          <p>Database se nikali gayi 5 authentic causes (goals, raised amounts, aur descriptions).</p>
+        </div>
+        <div class="banner-actions">
+          <button class="copy-btn" onclick="copyPageText('tab-causes')">📋 Copy All Causes Text</button>
+        </div>
+      </div>
+      <div class="causes-grid">
+        
+          <div class="cause-card">
+            <div class="cause-card-img">
+              <img src="./images/donation-279x233.png" alt="Sponsor a child" onerror="this.src='./images/donation-279x233.png'">
+              <span class="cause-percentage-badge">100% Funded</span>
+            </div>
+            <div class="cause-body">
+              <h4>Sponsor a child</h4>
+              <p class="cause-desc">Direct sponsorship for orphaned and needy children covering education, housing, clothing, and nutrition.</p>
+              <div class="cause-progress-metrics">
+                <div class="metric-item">
+                  <span>Current Raised</span>
+                  <strong>₨ 0</strong>
+                </div>
+                <div class="metric-item">
+                  <span>Target Goal</span>
+                  <strong>Unlimited</strong>
+                </div>
+              </div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button class="copy-btn" onclick="copyText('Sponsor a child: Direct sponsorship for orphaned and needy children covering education, housing, clothing, and nutrition. (Goal: Unlimited, Raised: ₨ 0)', this)">📋 Copy Details</button>
+                <button class="copy-btn" onclick="copyText('./images/donation-279x233.png', this)">📁 Image Path</button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="cause-card">
+            <div class="cause-card-img">
+              <img src="./images/education-1-279x233.png" alt="Sponsor a Room" onerror="this.src='./images/donation-279x233.png'">
+              <span class="cause-percentage-badge">3% Funded</span>
+            </div>
+            <div class="cause-body">
+              <h4>Sponsor a Room</h4>
+              <p class="cause-desc">Help build and maintain safe, furnished living rooms for inducted children in MND Homes welfare complex.</p>
+              <div class="cause-progress-metrics">
+                <div class="metric-item">
+                  <span>Current Raised</span>
+                  <strong>₨ 1,050.00</strong>
+                </div>
+                <div class="metric-item">
+                  <span>Target Goal</span>
+                  <strong>₨ 35,000.00</strong>
+                </div>
+              </div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button class="copy-btn" onclick="copyText('Sponsor a Room: Help build and maintain safe, furnished living rooms for inducted children in MND Homes welfare complex. (Goal: ₨ 35,000.00, Raised: ₨ 1,050.00)', this)">📋 Copy Details</button>
+                <button class="copy-btn" onclick="copyText('./images/education-1-279x233.png', this)">📁 Image Path</button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="cause-card">
+            <div class="cause-card-img">
+              <img src="./images/health-279x233.png" alt="Access to Care is a Right" onerror="this.src='./images/donation-279x233.png'">
+              <span class="cause-percentage-badge">0.5% Funded</span>
+            </div>
+            <div class="cause-body">
+              <h4>Access to Care is a Right</h4>
+              <p class="cause-desc">Providing vital medical treatments, clinical checkups, and necessary medications for vulnerable families.</p>
+              <div class="cause-progress-metrics">
+                <div class="metric-item">
+                  <span>Current Raised</span>
+                  <strong>₨ 500.00</strong>
+                </div>
+                <div class="metric-item">
+                  <span>Target Goal</span>
+                  <strong>₨ 100,000.00</strong>
+                </div>
+              </div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button class="copy-btn" onclick="copyText('Access to Care is a Right: Providing vital medical treatments, clinical checkups, and necessary medications for vulnerable families. (Goal: ₨ 100,000.00, Raised: ₨ 500.00)', this)">📋 Copy Details</button>
+                <button class="copy-btn" onclick="copyText('./images/health-279x233.png', this)">📁 Image Path</button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="cause-card">
+            <div class="cause-card-img">
+              <img src="./images/clean-water-354x233.jpg" alt="Raise Fund for Clean &amp; Healthy Water" onerror="this.src='./images/donation-279x233.png'">
+              <span class="cause-percentage-badge">0% Funded</span>
+            </div>
+            <div class="cause-body">
+              <h4>Raise Fund for Clean &amp; Healthy Water</h4>
+              <p class="cause-desc">Installing clean drinking water filtration plants to prevent waterborne diseases in underdeveloped localities.</p>
+              <div class="cause-progress-metrics">
+                <div class="metric-item">
+                  <span>Current Raised</span>
+                  <strong>₨ 0</strong>
+                </div>
+                <div class="metric-item">
+                  <span>Target Goal</span>
+                  <strong>₨ 100,000.00</strong>
+                </div>
+              </div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button class="copy-btn" onclick="copyText('Raise Fund for Clean & Healthy Water: Installing clean drinking water filtration plants to prevent waterborne diseases in underdeveloped localities. (Goal: ₨ 100,000.00, Raised: ₨ 0)', this)">📋 Copy Details</button>
+                <button class="copy-btn" onclick="copyText('./images/clean-water-354x233.jpg', this)">📁 Image Path</button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="cause-card">
+            <div class="cause-card-img">
+              <img src="./images/helping-child-354x233.jpg" alt="Help Children Poor Insurance &amp; Medical" onerror="this.src='./images/donation-279x233.png'">
+              <span class="cause-percentage-badge">0% Funded</span>
+            </div>
+            <div class="cause-body">
+              <h4>Help Children Poor Insurance &amp; Medical</h4>
+              <p class="cause-desc">Emergency healthcare coverage and urgent treatments for low-income and destitute children.</p>
+              <div class="cause-progress-metrics">
+                <div class="metric-item">
+                  <span>Current Raised</span>
+                  <strong>₨ 0</strong>
+                </div>
+                <div class="metric-item">
+                  <span>Target Goal</span>
+                  <strong>₨ 10,000.00</strong>
+                </div>
+              </div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button class="copy-btn" onclick="copyText('Help Children Poor Insurance & Medical: Emergency healthcare coverage and urgent treatments for low-income and destitute children. (Goal: ₨ 10,000.00, Raised: ₨ 0)', this)">📋 Copy Details</button>
+                <button class="copy-btn" onclick="copyText('./images/helping-child-354x233.jpg', this)">📁 Image Path</button>
+              </div>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+
+    <!-- TAB: SERVICES -->
+    <div id="tab-services" class="tab-panel">
+      <div class="page-banner">
+        <div class="page-banner-title">
+          <h2>🛠️ Charity Services & Pillars</h2>
+          <p>MND Homes ke 4 main service departments (Health, Education, Accommodation, Food).</p>
+        </div>
+        <div class="banner-actions">
+          <button class="copy-btn" onclick="copyPageText('tab-services')">📋 Copy All Services</button>
+        </div>
+      </div>
+      <div class="services-grid">
+        
+          <div class="service-card">
+            <div class="service-icon-box">
+              <img src="./images/medical.png" alt="Health" onerror="this.src='./images/medical.png'">
+            </div>
+            <h4>Health Support</h4>
+            <p style="margin-bottom: 18px;">We deliver compassionate medical care, ensuring every person receives treatment with dignity, no matter their background or condition.</p>
+            <div style="display: flex; gap: 8px;">
+              <button class="copy-btn" onclick="copyText('Health: We deliver compassionate medical care, ensuring every person receives treatment with dignity, no matter their background or condition.', this)">📋 Copy Text</button>
+              <button class="copy-btn" onclick="copyText('./images/medical.png', this)">📁 Icon Path</button>
+            </div>
+          </div>
+        
+          <div class="service-card">
+            <div class="service-icon-box">
+              <img src="./images/education.png" alt="Education" onerror="this.src='./images/medical.png'">
+            </div>
+            <h4>Education Support</h4>
+            <p style="margin-bottom: 18px;">We provide inclusive and compassionate educational support, empowering every individual to learn with dignity, regardless of their background or circumstances.</p>
+            <div style="display: flex; gap: 8px;">
+              <button class="copy-btn" onclick="copyText('Education: We provide inclusive and compassionate educational support, empowering every individual to learn with dignity, regardless of their background or circumstances.', this)">📋 Copy Text</button>
+              <button class="copy-btn" onclick="copyText('./images/education.png', this)">📁 Icon Path</button>
+            </div>
+          </div>
+        
+          <div class="service-card">
+            <div class="service-icon-box">
+              <img src="./images/hotel.png" alt="Accommodation" onerror="this.src='./images/medical.png'">
+            </div>
+            <h4>Accommodation Support</h4>
+            <p style="margin-bottom: 18px;">Providing safe and supportive accommodation with compassion. We offer shelter and meals, serving every person with dignity regardless of background or circumstance.</p>
+            <div style="display: flex; gap: 8px;">
+              <button class="copy-btn" onclick="copyText('Accommodation: Providing safe and supportive accommodation with compassion. We offer shelter and meals, serving every person with dignity regardless of background or circumstance.', this)">📋 Copy Text</button>
+              <button class="copy-btn" onclick="copyText('./images/hotel.png', this)">📁 Icon Path</button>
+            </div>
+          </div>
+        
+          <div class="service-card">
+            <div class="service-icon-box">
+              <img src="./images/service-card-icon1-1-1-2.svg" alt="Food" onerror="this.src='./images/medical.png'">
+            </div>
+            <h4>Food Support</h4>
+            <p style="margin-bottom: 18px;">Providing essential support with compassion from nutritious food. We serve every person with dignity, regardless of background or circumstance.</p>
+            <div style="display: flex; gap: 8px;">
+              <button class="copy-btn" onclick="copyText('Food: Providing essential support with compassion from nutritious food. We serve every person with dignity, regardless of background or circumstance.', this)">📋 Copy Text</button>
+              <button class="copy-btn" onclick="copyText('./images/service-card-icon1-1-1-2.svg', this)">📁 Icon Path</button>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+
+    <!-- TAB: GALLERY -->
+    
+    <div id="tab-gallery" class="tab-panel">
+      <div class="page-banner">
+        <div class="page-banner-title">
+          <h2>🖼️ Photo Gallery</h2>
+          <p>Original website ki gallery pictures jo uploads folder mein available hain.</p>
+        </div>
+      </div>
+      <div class="images-strip">
+        
+      <div class="image-asset-card">
+        <div class="img-preview-box" style="height: 220px;">
+          <img src="./images/gallery_1_1-2-100x100.png" alt="Gallery Item 1" onerror="this.src='./images/friends.png'">
+          <button class="img-overlay-zoom" onclick="openLightbox('./images/gallery_1_1-2-100x100.png', 'Gallery Item 1')">🔍</button>
+        </div>
+        <div class="img-details-bar">
+          <span class="img-name">Gallery Item 1</span>
+          <span class="img-path-tag">./images/gallery_1_1-2-100x100.png</span>
+          <button class="copy-btn" onclick="copyText('./images/gallery_1_1-2-100x100.png', this)">📁 Copy File Path</button>
+        </div>
+      </div>
+      <div class="image-asset-card">
+        <div class="img-preview-box" style="height: 220px;">
+          <img src="./images/gallery_1_2-2-100x100.png" alt="Gallery Item 2" onerror="this.src='./images/friends.png'">
+          <button class="img-overlay-zoom" onclick="openLightbox('./images/gallery_1_2-2-100x100.png', 'Gallery Item 2')">🔍</button>
+        </div>
+        <div class="img-details-bar">
+          <span class="img-name">Gallery Item 2</span>
+          <span class="img-path-tag">./images/gallery_1_2-2-100x100.png</span>
+          <button class="copy-btn" onclick="copyText('./images/gallery_1_2-2-100x100.png', this)">📁 Copy File Path</button>
+        </div>
+      </div>
+      <div class="image-asset-card">
+        <div class="img-preview-box" style="height: 220px;">
+          <img src="./images/gallery_1_3-2-100x100.png" alt="Gallery Item 3" onerror="this.src='./images/friends.png'">
+          <button class="img-overlay-zoom" onclick="openLightbox('./images/gallery_1_3-2-100x100.png', 'Gallery Item 3')">🔍</button>
+        </div>
+        <div class="img-details-bar">
+          <span class="img-name">Gallery Item 3</span>
+          <span class="img-path-tag">./images/gallery_1_3-2-100x100.png</span>
+          <button class="copy-btn" onclick="copyText('./images/gallery_1_3-2-100x100.png', this)">📁 Copy File Path</button>
+        </div>
+      </div>
+      <div class="image-asset-card">
+        <div class="img-preview-box" style="height: 220px;">
+          <img src="./images/gallery_1_4-2-100x100.png" alt="Gallery Item 4" onerror="this.src='./images/friends.png'">
+          <button class="img-overlay-zoom" onclick="openLightbox('./images/gallery_1_4-2-100x100.png', 'Gallery Item 4')">🔍</button>
+        </div>
+        <div class="img-details-bar">
+          <span class="img-name">Gallery Item 4</span>
+          <span class="img-path-tag">./images/gallery_1_4-2-100x100.png</span>
+          <button class="copy-btn" onclick="copyText('./images/gallery_1_4-2-100x100.png', this)">📁 Copy File Path</button>
+        </div>
+      </div>
+      <div class="image-asset-card">
+        <div class="img-preview-box" style="height: 220px;">
+          <img src="./images/friends.png" alt="Kids at MND" onerror="this.src='./images/friends.png'">
+          <button class="img-overlay-zoom" onclick="openLightbox('./images/friends.png', 'Kids at MND')">🔍</button>
+        </div>
+        <div class="img-details-bar">
+          <span class="img-name">Kids at MND</span>
+          <span class="img-path-tag">./images/friends.png</span>
+          <button class="copy-btn" onclick="copyText('./images/friends.png', this)">📁 Copy File Path</button>
+        </div>
+      </div>
+      <div class="image-asset-card">
+        <div class="img-preview-box" style="height: 220px;">
+          <img src="./images/bckgrnd-scaled.png" alt="Care Community" onerror="this.src='./images/friends.png'">
+          <button class="img-overlay-zoom" onclick="openLightbox('./images/bckgrnd-scaled.png', 'Care Community')">🔍</button>
+        </div>
+        <div class="img-details-bar">
+          <span class="img-name">Care Community</span>
+          <span class="img-path-tag">./images/bckgrnd-scaled.png</span>
+          <button class="copy-btn" onclick="copyText('./images/bckgrnd-scaled.png', this)">📁 Copy File Path</button>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <!-- TAB: TESTIMONIALS -->
+    
+    <div id="tab-testimonials" class="tab-panel">
+      <div class="page-banner">
+        <div class="page-banner-title">
+          <h2>💬 Leadership & Supporter Testimonials</h2>
+          <p>Quotes and statements from Trustees and Donors.</p>
+        </div>
+        <div class="banner-actions">
+          <button class="copy-btn" onclick="copyPageText('tab-testimonials')">📋 Copy All Testimonials</button>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px;">
+        
+      <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm);">
+        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+          <img src="./images/Mr-riaz-4.png" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary);" onerror="this.src='./images/Mr-riaz-4.png'">
+          <div>
+            <h4 style="font-size: 16px; color: var(--primary);">Riaz Dad</h4>
+            <div style="font-size: 12px; color: var(--accent); font-weight: 700;">Patron In-Chief</div>
+          </div>
+        </div>
+        <div class="team-quote-box" style="margin-bottom: 16px;">
+          "MND Homes is not just an NGO, it is a movement dedicated to building a strong foundation for the nation. Guided by our long-term vision, this initiative is committed to creating lasting change across Pakistan. Our key projects focus on providing accommodation for orphans, promoting education, advancing welfare, and fostering prosperity throughout the country. We are proud to be part of this inspiring mission and to contribute towards building a brighter, stronger future for generations to come."
+        </div>
+        <button class="copy-btn" onclick="copyText('Riaz Dad (Patron In-Chief): MND Homes is not just an NGO, it is a movement dedicated to building a strong foundation for the nation. Guided by our long-term vision, this initiative is committed to creating lasting change across Pakistan. Our key projects focus on providing accommodation for orphans, promoting education, advancing welfare, and fostering prosperity throughout the country. We are proud to be part of this inspiring mission and to contribute towards building a brighter, stronger future for generations to come.', this)">📋 Copy Review</button>
+      </div>
+      <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm);">
+        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+          <img src="./images/testimonial_1.png" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary);" onerror="this.src='./images/Mr-riaz-4.png'">
+          <div>
+            <h4 style="font-size: 16px; color: var(--primary);">Asim Mahmood Khan</h4>
+            <div style="font-size: 12px; color: var(--accent); font-weight: 700;">CEO, Chairman</div>
+          </div>
+        </div>
+        <div class="team-quote-box" style="margin-bottom: 16px;">
+          "Before MND Homes stepped in, I had lost all hope. Now I go to school every day, I have new friends, and I dream of becoming a teacher. MND Homes has given me more than just support — they’ve given me a future."
+        </div>
+        <button class="copy-btn" onclick="copyText('Asim Mahmood Khan (CEO, Chairman): Before MND Homes stepped in, I had lost all hope. Now I go to school every day, I have new friends, and I dream of becoming a teacher. MND Homes has given me more than just support — they’ve given me a future.', this)">📋 Copy Review</button>
+      </div>
+      <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm);">
+        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+          <img src="./images/testimonial_4-1.png" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary);" onerror="this.src='./images/Mr-riaz-4.png'">
+          <div>
+            <h4 style="font-size: 16px; color: var(--primary);">Aqsa Asim Khan</h4>
+            <div style="font-size: 12px; color: var(--accent); font-weight: 700;">Vice Chairman</div>
+          </div>
+        </div>
+        <div class="team-quote-box" style="margin-bottom: 16px;">
+          "Supporting MND Homes has been one of the most rewarding experiences of my life. Knowing that my donation is helping educate children, feed families, and provide shelter to orphans gives me peace of heart. MND Homes truly delivers hope where it&#39;s needed most."
+        </div>
+        <button class="copy-btn" onclick="copyText('Aqsa Asim Khan (Vice Chairman): Supporting MND Homes has been one of the most rewarding experiences of my life. Knowing that my donation is helping educate children, feed families, and provide shelter to orphans gives me peace of heart. MND Homes truly delivers hope where it\'s needed most.', this)">📋 Copy Review</button>
+      </div>
+      <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm);">
+        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+          <img src="./images/testimonial_3.png" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary);" onerror="this.src='./images/Mr-riaz-4.png'">
+          <div>
+            <h4 style="font-size: 16px; color: var(--primary);">Col. Mumtaz Ahmed Tarar (Retd)</h4>
+            <div style="font-size: 12px; color: var(--accent); font-weight: 700;">Trustee</div>
+          </div>
+        </div>
+        <div class="team-quote-box" style="margin-bottom: 16px;">
+          "Volunteering with MND Homes has changed the way I see the world. It’s incredible to work with a team that’s so dedicated to lifting others up. Whether it&#39;s food drives, school support, or orphan care — every effort is made with sincerity and compassion."
+        </div>
+        <button class="copy-btn" onclick="copyText('Col. Mumtaz Ahmed Tarar (Retd) (Trustee): Volunteering with MND Homes has changed the way I see the world. It’s incredible to work with a team that’s so dedicated to lifting others up. Whether it\'s food drives, school support, or orphan care — every effort is made with sincerity and compassion.', this)">📋 Copy Review</button>
+      </div>
+      <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm);">
+        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+          <img src="./images/testimonial_4.png" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary);" onerror="this.src='./images/Mr-riaz-4.png'">
+          <div>
+            <h4 style="font-size: 16px; color: var(--primary);">Esha Khan</h4>
+            <div style="font-size: 12px; color: var(--accent); font-weight: 700;">Information Secretary</div>
+          </div>
+        </div>
+        <div class="team-quote-box" style="margin-bottom: 16px;">
+          "MND Homes is more than an NGO — it’s a movement of kindness. Their projects in education and healthcare have brought real, lasting change to our village. We are proud to work alongside them in building a brighter tomorrow."
+        </div>
+        <button class="copy-btn" onclick="copyText('Esha Khan (Information Secretary): MND Homes is more than an NGO — it’s a movement of kindness. Their projects in education and healthcare have brought real, lasting change to our village. We are proud to work alongside them in building a brighter tomorrow.', this)">📋 Copy Review</button>
+      </div>
+      <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm);">
+        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+          <img src="./images/testimonial_2.png" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary);" onerror="this.src='./images/Mr-riaz-4.png'">
+          <div>
+            <h4 style="font-size: 16px; color: var(--primary);">Abdul Rehman Goraya</h4>
+            <div style="font-size: 12px; color: var(--accent); font-weight: 700;">General Secretary</div>
+          </div>
+        </div>
+        <div class="team-quote-box" style="margin-bottom: 16px;">
+          "MND Homes is more than an NGO — it’s a movement of kindness. Under the guidance of our leadership, their projects in education and healthcare have brought real, lasting change to our village. We are proud to work alongside them."
+        </div>
+        <button class="copy-btn" onclick="copyText('Abdul Rehman Goraya (General Secretary): MND Homes is more than an NGO — it’s a movement of kindness. Under the guidance of our leadership, their projects in education and healthcare have brought real, lasting change to our village. We are proud to work alongside them.', this)">📋 Copy Review</button>
+      </div>
+      <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm);">
+        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+          <img src="./images/9.png" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary);" onerror="this.src='./images/Mr-riaz-4.png'">
+          <div>
+            <h4 style="font-size: 16px; color: var(--primary);">Hafiz Zubair A. Ghani</h4>
+            <div style="font-size: 12px; color: var(--accent); font-weight: 700;">Finance Secretary</div>
+          </div>
+        </div>
+        <div class="team-quote-box" style="margin-bottom: 16px;">
+          "With utmost financial transparency and responsibility, our projects ensure that aid reaches the right hands without a moment of delay."
+        </div>
+        <button class="copy-btn" onclick="copyText('Hafiz Zubair A. Ghani (Finance Secretary): With utmost financial transparency and responsibility, our projects ensure that aid reaches the right hands without a moment of delay.', this)">📋 Copy Review</button>
+      </div>
+      <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm);">
+        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+          <img src="./images/6-2.png" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary);" onerror="this.src='./images/Mr-riaz-4.png'">
+          <div>
+            <h4 style="font-size: 16px; color: var(--primary);">Khalid Mahmood</h4>
+            <div style="font-size: 12px; color: var(--accent); font-weight: 700;">Joint Secretary</div>
+          </div>
+        </div>
+        <div class="team-quote-box" style="margin-bottom: 16px;">
+          "Through dedication and teamwork in education and healthcare, our community efforts are paving the way for sustainable prosperity."
+        </div>
+        <button class="copy-btn" onclick="copyText('Khalid Mahmood (Joint Secretary): Through dedication and teamwork in education and healthcare, our community efforts are paving the way for sustainable prosperity.', this)">📋 Copy Review</button>
+      </div>
+      </div>
+    </div>
+
+    <!-- TAB: FAQS -->
+    
+    <div id="tab-faqs" class="tab-panel">
+      <div class="page-banner">
+        <div class="page-banner-title">
+          <h2>❓ Frequently Asked Questions</h2>
+          <p>Website ke verified FAQs aur unke answers.</p>
+        </div>
+        <div class="banner-actions">
+          <button class="copy-btn" onclick="copyPageText('tab-faqs')">📋 Copy All FAQs</button>
+        </div>
+      </div>
+      <div class="faq-list">
+        
+      <div class="faq-item">
+        <div class="faq-header" onclick="toggleFaq('faq-tab-0')">
+          <h5>1. What does MND Homes do?</h5>
+          <button class="copy-btn" onclick="event.stopPropagation(); copyText('What does MND Homes do?\\nMND Homes provides safe housing, healthcare support, food aid, and educational opportunities to underserved individuals and families.', this)">Copy Q&A</button>
+        </div>
+        <div id="faq-tab-0" class="faq-body">
+          <p>MND Homes provides safe housing, healthcare support, food aid, and educational opportunities to underserved individuals and families.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-header" onclick="toggleFaq('faq-tab-1')">
+          <h5>2. Who benefits from MND Homes’ services?</h5>
+          <button class="copy-btn" onclick="event.stopPropagation(); copyText('Who benefits from MND Homes’ services?\\nWe serve vulnerable communities, including orphans, widows, the elderly, and low-income families in need of shelter, support, and basic essentials.', this)">Copy Q&A</button>
+        </div>
+        <div id="faq-tab-1" class="faq-body">
+          <p>We serve vulnerable communities, including orphans, widows, the elderly, and low-income families in need of shelter, support, and basic essentials.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-header" onclick="toggleFaq('faq-tab-2')">
+          <h5>3. How is my donation used?</h5>
+          <button class="copy-btn" onclick="event.stopPropagation(); copyText('How is my donation used?\\nWe ensure your donation goes directly toward our housing projects, food distribution, medical aid, and education initiatives. Transparency and accountability are our priorities.', this)">Copy Q&A</button>
+        </div>
+        <div id="faq-tab-2" class="faq-body">
+          <p>We ensure your donation goes directly toward our housing projects, food distribution, medical aid, and education initiatives. Transparency and accountability are our priorities.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-header" onclick="toggleFaq('faq-tab-3')">
+          <h5>4. Does MND Homes partner with other organizations?</h5>
+          <button class="copy-btn" onclick="event.stopPropagation(); copyText('Does MND Homes partner with other organizations?\\nYes, we collaborate with local and international nonprofits to expand our reach and impact.', this)">Copy Q&A</button>
+        </div>
+        <div id="faq-tab-3" class="faq-body">
+          <p>Yes, we collaborate with local and international nonprofits to expand our reach and impact.</p>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <!-- TAB: CONTACT -->
+    <div id="tab-contact" class="tab-panel">
+      <div class="page-banner">
+        <div class="page-banner-title">
+          <h2>📞 Contact & Office Information</h2>
+          <p>MND Homes Kharian office address, direct phones, emails, aur Google Map coordinates.</p>
+        </div>
+        <div class="banner-actions">
+          <button class="copy-btn" onclick="copyPageText('tab-contact')">📋 Copy All Contact Info</button>
+        </div>
+      </div>
+
+      <div class="contact-layout">
+        <div class="contact-card-box">
+          <h3 style="font-family: 'Outfit'; font-size: 22px; color: var(--primary); margin-bottom: 20px;">Get In Touch Directly</h3>
+
+          <div class="contact-item-row">
+            <div class="contact-icon-pill">📍</div>
+            <div class="contact-item-info">
+              <h5>Physical Address</h5>
+              <p>Daira - Damian Rd, Kharian, Pakistan.</p>
+              <button class="copy-btn" style="margin-top: 6px;" onclick="copyText('Daira - Damian Rd, Kharian, Pakistan.', this)">Copy Address</button>
+            </div>
+          </div>
+
+          <div class="contact-item-row">
+            <div class="contact-icon-pill">📞</div>
+            <div class="contact-item-info">
+              <h5>Phone Numbers</h5>
+              <p>+92-346-66346637 &nbsp;|&nbsp; +92-305-66346637</p>
+              <div style="margin-top: 6px; display: flex; gap: 6px;">
+                <button class="copy-btn" onclick="copyText('+92-346-66346637', this)">Copy +92-346-66346637</button><button class="copy-btn" onclick="copyText('+92-305-66346637', this)">Copy +92-305-66346637</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-item-row">
+            <div class="contact-icon-pill">✉️</div>
+            <div class="contact-item-info">
+              <h5>Official Email Addresses</h5>
+              <p>info@mndhomes.com &nbsp;|&nbsp; support@mndhomes.com &nbsp;|&nbsp; career@mndhomes.com</p>
+              <div style="margin-top: 6px; display: flex; gap: 6px; flex-wrap: wrap;">
+                <button class="copy-btn" onclick="copyText('info@mndhomes.com', this)">Copy info@mndhomes.com</button><button class="copy-btn" onclick="copyText('support@mndhomes.com', this)">Copy support@mndhomes.com</button><button class="copy-btn" onclick="copyText('career@mndhomes.com', this)">Copy career@mndhomes.com</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="map-frame-box">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d13414.370402961275!2d73.83173708962421!3d32.80305997176719!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzLCsDQ4JzAyLjMiTiA3M8KwNTAnMTAuNSJF!5e0!3m2!1sen!2s!4v1757917699537!5m2!1sen!2s" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+          <div style="margin-top: 10px; font-size: 12px; color: var(--text-muted); text-align: center;">
+            Kharian, Punjab, Pakistan (Latitude: 32.803, Longitude: 73.831)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: PRODUCTS -->
+    
+    <div id="tab-products" class="tab-panel">
+      <div class="page-banner">
+        <div class="page-banner-title">
+          <h2>🛍️ Charity Shop Products & Supply Items</h2>
+          <p>Database mein mojood support items aur categories.</p>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px;">
+        
+      <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 22px;">
+        <div style="font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase;">Health Support</div>
+        <h4 style="font-size: 17px; color: var(--primary); margin: 6px 0 14px 0;">Medicine</h4>
+        <button class="copy-btn" onclick="copyText('Medicine (Health Support)', this)">📋 Copy Item Name</button>
+      </div>
+      <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 22px;">
+        <div style="font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase;">Apparel &amp; Uniforms</div>
+        <h4 style="font-size: 17px; color: var(--primary); margin: 6px 0 14px 0;">Dress &amp; Clothes</h4>
+        <button class="copy-btn" onclick="copyText('Dress & Clothes (Apparel & Uniforms)', this)">📋 Copy Item Name</button>
+      </div>
+      <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 22px;">
+        <div style="font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase;">Education</div>
+        <h4 style="font-size: 17px; color: var(--primary); margin: 6px 0 14px 0;">Books &amp; School Supplies</h4>
+        <button class="copy-btn" onclick="copyText('Books & School Supplies (Education)', this)">📋 Copy Item Name</button>
+      </div>
+      <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 22px;">
+        <div style="font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase;">Shelter Needs</div>
+        <h4 style="font-size: 17px; color: var(--primary); margin: 6px 0 14px 0;">Comfort Chair &amp; Furniture</h4>
+        <button class="copy-btn" onclick="copyText('Comfort Chair & Furniture (Shelter Needs)', this)">📋 Copy Item Name</button>
+      </div>
+      <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 22px;">
+        <div style="font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase;">Infant Support</div>
+        <h4 style="font-size: 17px; color: var(--primary); margin: 6px 0 14px 0;">Baby Dress &amp; Care Packs</h4>
+        <button class="copy-btn" onclick="copyText('Baby Dress & Care Packs (Infant Support)', this)">📋 Copy Item Name</button>
+      </div>
+      </div>
+    </div>
+
+    <!-- CONTENT BOARD / TABLE VIEW -->
+    <div id="global-board-container" style="display: none; margin-top: 24px;">
+      <div class="page-banner">
+        <div class="page-banner-title">
+          <h2>📋 All Website Content Data Board</h2>
+          <p>Tamam text blocks aur unke relative assets ek jagah table view mein copy karne ke liye.</p>
+        </div>
+      </div>
+
+      <table class="board-mode-table">
+        <thead>
+          <tr>
+            <th style="width: 18%;">Section / Page</th>
+            <th style="width: 25%;">Heading / Field</th>
+            <th style="width: 45%;">Content / Text Details</th>
+            <th style="width: 12%;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Home / Hero</strong></td>
+            <td>Main Headline</td>
+            <td>Helping Each Other Can Make World Better</td>
+            <td><button class="copy-btn" onclick="copyText('Helping Each Other Can Make World Better', this)">Copy</button></td>
+          </tr>
+          <tr>
+            <td><strong>Home / Hero</strong></td>
+            <td>Subtitle</td>
+            <td>Give Hope For The Homeless</td>
+            <td><button class="copy-btn" onclick="copyText('Give Hope For The Homeless', this)">Copy</button></td>
+          </tr>
+          <tr>
+            <td><strong>About Us</strong></td>
+            <td>Vision Statement</td>
+            <td>At MND Homes, we believe that Humanity Prevails. With a mission rooted in compassion and service...</td>
+            <td><button class="copy-btn" onclick="copyText('At MND Homes, we believe that Humanity Prevails.', this)">Copy</button></td>
+          </tr>
+          <tr>
+            <td><strong>Patron In-Chief</strong></td>
+            <td>Riaz Dad Quote</td>
+            <td>Guided by the long-term vision of our Patron-in-Chief, Mohammed Riaz Dad...</td>
+            <td><button class="copy-btn" onclick="copyText('Mohammed Riaz Dad - Patron In-Chief', this)">Copy</button></td>
+          </tr>
+          <tr>
+            <td><strong>Contact Office</strong></td>
+            <td>Address</td>
+            <td>Daira - Damian Rd, Kharian, Pakistan.</td>
+            <td><button class="copy-btn" onclick="copyText('Daira - Damian Rd, Kharian, Pakistan.', this)">Copy</button></td>
+          </tr>
+          <tr>
+            <td><strong>Contact Phone</strong></td>
+            <td>Phones</td>
+            <td>+92-346-66346637, +92-305-66346637</td>
+            <td><button class="copy-btn" onclick="copyText('+92-346-66346637, +92-305-66346637', this)">Copy</button></td>
+          </tr>
+          <tr>
+            <td><strong>Contact Email</strong></td>
+            <td>Emails</td>
+            <td>info@mndhomes.com, support@mndhomes.com, career@mndhomes.com</td>
+            <td><button class="copy-btn" onclick="copyText('info@mndhomes.com, support@mndhomes.com, career@mndhomes.com', this)">Copy</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <!-- Image Lightbox Modal -->
+  <div id="imageLightboxModal" class="modal-overlay" onclick="closeLightbox(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h4 id="lightboxTitle">Asset Preview</h4>
+        <button class="modal-close-btn" onclick="closeLightbox()">&times;</button>
+      </div>
+      <div class="modal-img-wrap">
+        <img id="lightboxImg" src="" alt="Preview">
+      </div>
+      <div class="modal-footer">
+        <span id="lightboxPath" class="img-path-tag"></span>
+        <button class="copy-btn" onclick="copyText(document.getElementById('lightboxPath').innerText, this)">📁 Copy Local Image Path</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastPopup" class="toast-popup">
+    <div class="toast-icon">✓</div>
+    <span id="toastMsg">Copied to clipboard!</span>
+  </div>
+
+  <footer class="app-footer">
+    <p><strong>MND Homes Website Visual Asset & Content Hub</strong> &bull; Generated from Database & Uploads &bull; Ready for New Website Design</p>
+  </footer>
+
+  <script>
+    function switchTab(tabId) {
+      var panels = document.querySelectorAll('.tab-panel');
+      for (var i = 0; i < panels.length; i++) {
+        panels[i].classList.remove('active');
+      }
+      var btns = document.querySelectorAll('.nav-tab-btn');
+      for (var j = 0; j < btns.length; j++) {
+        btns[j].classList.remove('active');
+      }
+
+      var target = document.getElementById(tabId);
+      if (target) {
+        target.classList.add('active');
+      }
+
+      for (var k = 0; k < btns.length; k++) {
+        var attr = btns[k].getAttribute('onclick') || '';
+        if (attr.indexOf(tabId) !== -1) {
+          btns[k].classList.add('active');
+          break;
+        }
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleFaq(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+      }
+    }
+
+    function copyText(text, btnElement) {
+      if (!text) return;
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function() {
+          showToast('Copied to clipboard!');
+          highlightBtn(btnElement);
+        }).catch(function() {
+          fallbackCopyText(text, btnElement);
+        });
+      } else {
+        fallbackCopyText(text, btnElement);
+      }
+    }
+
+    function fallbackCopyText(text, btnElement) {
+      var textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-9999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showToast('Copied to clipboard!');
+        highlightBtn(btnElement);
+      } catch (err) {
+        showToast('Press Ctrl+C to copy');
+      }
+      document.body.removeChild(textArea);
+    }
+
+    function highlightBtn(btnElement) {
+      if (!btnElement) return;
+      var original = btnElement.innerHTML;
+      btnElement.classList.add('copied');
+      btnElement.innerHTML = '✓ Copied';
+      setTimeout(function() {
+        btnElement.classList.remove('copied');
+        btnElement.innerHTML = original;
+      }, 1500);
+    }
+
+    function copySectionText(btn) {
+      var section = btn.closest('.website-section');
+      if (section) {
+        var clone = section.cloneNode(true);
+        var btns = clone.querySelectorAll('button, .copy-btn, .img-path-tag');
+        for (var i = 0; i < btns.length; i++) { btns[i].remove(); }
+        var text = clone.innerText.trim();
+        copyText(text, btn);
+      }
+    }
+
+    function copyPageText(tabId) {
+      var tab = document.getElementById(tabId);
+      if (tab) {
+        var clone = tab.cloneNode(true);
+        var btns = clone.querySelectorAll('button, .copy-btn, .img-path-tag');
+        for (var i = 0; i < btns.length; i++) { btns[i].remove(); }
+        var text = clone.innerText.trim();
+        copyText(text);
+      }
+    }
+
+    var fullSiteJson = {"info":{"name":"MND Homes (Mom & Dad Welfare)","tagline":"Every Child Deserves - Humanity Prevails","url":"https://mndhomes.org","address":"Daira - Damian Rd, Kharian, Pakistan.","phones":["+92-346-66346637","+92-305-66346637"],"emails":["info@mndhomes.com","support@mndhomes.com","career@mndhomes.com"],"mapEmbed":"https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d13414.370402961275!2d73.83173708962421!3d32.80305997176719!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzLCsDQ4JzAyLjMiTiA3M8KwNTAnMTAuNSJF!5e0!3m2!1sen!2s!4v1757917699537!5m2!1sen!2s"},"homeSections":[{"id":"sec-hero","title":"Hero Banner","subtitle":"Give Hope For The Homeless","headline":"Helping Each Other Can Make World Better","ctaText":"Contact Us","ctaLink":"#contact","statsTag":"626,300+ Children in Pakistan Need School","volunteerCta":"Become a Volunteer","images":[{"name":"Kid with Hope","path":"./images/kid.png"},{"name":"About Children Banner","path":"./images/about.png"},{"name":"Hand Shape Deco","path":"./images/hand-shape1-2.png"}]},{"id":"sec-services","title":"Charity Services Overview","subtitle":"Charity Services","headline":"Serving Humanity For Everyone","services":[{"name":"Health","icon":"./images/medical.png","desc":"We deliver compassionate medical care, ensuring every person receives treatment with dignity, no matter their background or condition."},{"name":"Education","icon":"./images/education.png","desc":"We provide inclusive and compassionate educational support, empowering every individual to learn with dignity, regardless of their background or circumstances."},{"name":"Accommodation","icon":"./images/hotel.png","desc":"Providing safe and supportive accommodation with compassion. We offer shelter and meals, serving every person with dignity regardless of background or circumstance."},{"name":"Food","icon":"./images/service-card-icon1-1-1-2.svg","desc":"Providing essential support with compassion from nutritious food. We serve every person with dignity, regardless of background or circumstance."}]},{"id":"sec-about-home","title":"About MND Homes","subtitle":"About Us","headline":"Humanity Prevails","paragraphs":["At MND Homes, we believe that Humanity Prevails. With a mission rooted in compassion and service, we are dedicated to supporting the most vulnerable in our society.","In our first phase, we are inducting 500 children, providing them with safe accommodation, care, and the dignity every child deserves. This milestone reflects our commitment to working for humanity step by step, life by life.","Our vision is simple yet powerful: to create a future where no child is left without shelter, support, and hope. At MND Homes, every action we take is a testament to the belief that when humanity prevails, communities thrive.","This is just the beginning of our journey. By inducting 500 children in the first phase, we are laying the foundation for a larger vision — to expand our reach and provide thousands more with the shelter, security, and care they deserve. With the support of our community and donors, MND Homes is determined to turn compassion into action, ensuring that humanity truly prevails."],"badge":"626,300+ Children in Pakistan Need School","images":[{"name":"About Main","path":"./images/about.png"},{"name":"Children Smile","path":"./images/about_3.png"}]},{"id":"sec-causes","title":"Donation Causes & Campaigns","subtitle":"Let's Start Donating","headline":"See Your Impact: Transparent Donation Causes","causes":[{"title":"Sponsor a child","image":"./images/donation-279x233.png","percentage":"100%","raised":"₨ 0","goal":"Unlimited","desc":"Direct sponsorship for orphaned and needy children covering education, housing, clothing, and nutrition."},{"title":"Sponsor a Room","image":"./images/education-1-279x233.png","percentage":"3%","raised":"₨ 1,050.00","goal":"₨ 35,000.00","desc":"Help build and maintain safe, furnished living rooms for inducted children in MND Homes welfare complex."},{"title":"Access to Care is a Right","image":"./images/health-279x233.png","percentage":"0.5%","raised":"₨ 500.00","goal":"₨ 100,000.00","desc":"Providing vital medical treatments, clinical checkups, and necessary medications for vulnerable families."},{"title":"Raise Fund for Clean & Healthy Water","image":"./images/clean-water-354x233.jpg","percentage":"0%","raised":"₨ 0","goal":"₨ 100,000.00","desc":"Installing clean drinking water filtration plants to prevent waterborne diseases in underdeveloped localities."},{"title":"Help Children Poor Insurance & Medical","image":"./images/helping-child-354x233.jpg","percentage":"0%","raised":"₨ 0","goal":"₨ 10,000.00","desc":"Emergency healthcare coverage and urgent treatments for low-income and destitute children."}]},{"id":"sec-cta","title":"Call to Action (Support Each Other)","headline":"Our doors are always open to people who want to support each other","buttonText":"Get Involved","link":"#contact"},{"id":"sec-story","title":"Success Story Spotlight","subtitle":"Success Story","headline":"Hope and Opportunity for the Underserved","desc":"Support MND Homes through our secure online donation system — quick, safe, and easy. Choose your preferred payment method and make a one-time contribution with confidence.","personName":"Ali Mehmood","personQuote":"Every success story is a testament to your generosity and the strength of those we serve. Your donations spark real change — turning compassion into lasting impact.","experience":"05 Years of Experience","image":"./images/cause-1.png"},{"id":"sec-impact-stats","title":"Impact Statistics & Community","headline":"We Always Help The Needy People","desc":"Discover the inspiring stories of individuals and communities transformed by our programs. Our success stories highlight the real-life impact of your donations.","stats":[{"value":"15K+","label":"Incredible Volunteers"},{"value":"1K+","label":"Successful Campaigns"},{"value":"400+","label":"Monthly Donors"},{"value":"35K+","label":"Team Support"}],"image":"./images/girlthumbs.png"},{"id":"sec-leadership-testimonials","title":"Leadership & Board Testimonials","subtitle":"Testimonials","headline":"What People Say About Our Charity","leadershipList":[{"name":"Riaz Dad","role":"Patron In-Chief","photo":"./images/Mr-riaz-4.png","rating":"5.0","quote":"MND Homes is not just an NGO, it is a movement dedicated to building a strong foundation for the nation. Guided by our long-term vision, this initiative is committed to creating lasting change across Pakistan. Our key projects focus on providing accommodation for orphans, promoting education, advancing welfare, and fostering prosperity throughout the country. We are proud to be part of this inspiring mission and to contribute towards building a brighter, stronger future for generations to come."},{"name":"Asim Mahmood Khan","role":"CEO, Chairman","photo":"./images/testimonial_1.png","rating":"5.0","quote":"Before MND Homes stepped in, I had lost all hope. Now I go to school every day, I have new friends, and I dream of becoming a teacher. MND Homes has given me more than just support — they’ve given me a future."},{"name":"Aqsa Asim Khan","role":"Vice Chairman","photo":"./images/testimonial_4-1.png","rating":"4.8","quote":"Supporting MND Homes has been one of the most rewarding experiences of my life. Knowing that my donation is helping educate children, feed families, and provide shelter to orphans gives me peace of heart. MND Homes truly delivers hope where it's needed most."},{"name":"Col. Mumtaz Ahmed Tarar (Retd)","role":"Trustee","photo":"./images/testimonial_3.png","rating":"4.6","quote":"Volunteering with MND Homes has changed the way I see the world. It’s incredible to work with a team that’s so dedicated to lifting others up. Whether it's food drives, school support, or orphan care — every effort is made with sincerity and compassion."},{"name":"Esha Khan","role":"Information Secretary","photo":"./images/testimonial_4.png","rating":"4.7","quote":"MND Homes is more than an NGO — it’s a movement of kindness. Their projects in education and healthcare have brought real, lasting change to our village. We are proud to work alongside them in building a brighter tomorrow."},{"name":"Abdul Rehman Goraya","role":"General Secretary","photo":"./images/testimonial_2.png","rating":"4.7","quote":"MND Homes is more than an NGO — it’s a movement of kindness. Under the guidance of our leadership, their projects in education and healthcare have brought real, lasting change to our village. We are proud to work alongside them."},{"name":"Hafiz Zubair A. Ghani","role":"Finance Secretary","photo":"./images/9.png","rating":"4.7","quote":"With utmost financial transparency and responsibility, our projects ensure that aid reaches the right hands without a moment of delay."},{"name":"Khalid Mahmood","role":"Joint Secretary","photo":"./images/6-2.png","rating":"4.7","quote":"Through dedication and teamwork in education and healthcare, our community efforts are paving the way for sustainable prosperity."}]},{"id":"sec-faqs","title":"Frequently Asked Questions","subtitle":"Frequently Asked Questions","headline":"Have Any Questions For Us?","faqs":[{"q":"What does MND Homes do?","a":"MND Homes provides safe housing, healthcare support, food aid, and educational opportunities to underserved individuals and families."},{"q":"Who benefits from MND Homes’ services?","a":"We serve vulnerable communities, including orphans, widows, the elderly, and low-income families in need of shelter, support, and basic essentials."},{"q":"How is my donation used?","a":"We ensure your donation goes directly toward our housing projects, food distribution, medical aid, and education initiatives. Transparency and accountability are our priorities."},{"q":"Does MND Homes partner with other organizations?","a":"Yes, we collaborate with local and international nonprofits to expand our reach and impact."}],"images":[{"name":"Kid in Care","path":"./images/kid.png"},{"name":"Friends & Children","path":"./images/friends.png"}]}],"teamMembers":[{"name":"Michel Connor","role":"Volunteer Specialist","photo":"./images/team_3_3-2-100x100.png","socials":["Twitter","Facebook","Instagram","Behance"]},{"name":"Jessica Lauren","role":"Field Coordinator","photo":"./images/team_3_2-1-2-100x100.png","socials":["Twitter","Facebook","Instagram"]},{"name":"Daniel Thomas","role":"Logistics Volunteer","photo":"./images/team_3_8-2.png","socials":["Twitter","Facebook","Instagram"]},{"name":"Emma Mary","role":"Education Volunteer","photo":"./images/team_3_5-2-100x100.png","socials":["Twitter","Facebook","Instagram"]},{"name":"Alexander Joseph","role":"Healthcare Volunteer","photo":"./images/team_3_6-2-100x100.png","socials":["Twitter","Facebook","Instagram"]},{"name":"Olivia Patricia","role":"Outreach Volunteer","photo":"./images/team_3_7-2-100x100.png","socials":["Twitter","Facebook","Instagram"]}],"workProcess":[{"step":"01","title":"Awareness & Engagement","desc":"Your contribution is immediately directed to the specific project or emergency need you supported. We do not delay, every rupee goes to work fast."},{"step":"02","title":"Donation Collection","desc":"Our finance and project teams verify all transactions and allocate funds to the respective program or location, based on urgency and need."},{"step":"03","title":"Impact and Accountability","desc":"We closely monitor progress, gather reports, and ensure aid reaches the right people at the right time with accountability at every step."}],"galleryImages":[{"name":"Gallery Item 1","path":"./images/gallery_1_1-2-100x100.png"},{"name":"Gallery Item 2","path":"./images/gallery_1_2-2-100x100.png"},{"name":"Gallery Item 3","path":"./images/gallery_1_3-2-100x100.png"},{"name":"Gallery Item 4","path":"./images/gallery_1_4-2-100x100.png"},{"name":"Kids at MND","path":"./images/friends.png"},{"name":"Care Community","path":"./images/bckgrnd-scaled.png"}],"products":[{"name":"Medicine","category":"Health Support"},{"name":"Dress & Clothes","category":"Apparel & Uniforms"},{"name":"Books & School Supplies","category":"Education"},{"name":"Comfort Chair & Furniture","category":"Shelter Needs"},{"name":"Baby Dress & Care Packs","category":"Infant Support"}]};
+    function copyEntireSiteJson() {
+      copyText(JSON.stringify(fullSiteJson, null, 2));
+      showToast('All website data JSON copied!');
+    }
+
+    function showToast(msg) {
+      var toast = document.getElementById('toastPopup');
+      document.getElementById('toastMsg').innerText = msg;
+      toast.classList.add('show');
+      setTimeout(function() {
+        toast.classList.remove('show');
+      }, 2200);
+    }
+
+    function openLightbox(src, title) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxTitle').innerText = title || 'Asset Preview';
+      document.getElementById('lightboxPath').innerText = src;
+      document.getElementById('imageLightboxModal').classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('imageLightboxModal').classList.remove('active');
+    }
+
+    function switchViewMode(mode) {
+      var visualBtn = document.getElementById('btnViewVisual');
+      var boardBtn = document.getElementById('btnViewBoard');
+      var tabNav = document.querySelector('.nav-tabs-wrapper');
+      var tabs = document.querySelectorAll('.tab-panel');
+      var board = document.getElementById('global-board-container');
+
+      if (mode === 'visual') {
+        visualBtn.classList.add('active');
+        boardBtn.classList.remove('active');
+        tabNav.style.display = 'block';
+        for (var i = 0; i < tabs.length; i++) { tabs[i].style.display = ''; }
+        board.style.display = 'none';
+        var activeTab = document.querySelector('.tab-panel.active');
+        if (activeTab) activeTab.style.display = 'block';
+      } else {
+        boardBtn.classList.add('active');
+        visualBtn.classList.remove('active');
+        tabNav.style.display = 'none';
+        for (var j = 0; j < tabs.length; j++) { tabs[j].style.display = 'none'; }
+        board.style.display = 'block';
+      }
+    }
+
+    function handleSearch(q) {
+      var query = (q || '').toLowerCase().trim();
+      var elements = document.querySelectorAll('.website-section, .cause-card, .team-card, .service-card');
+      if (!query) {
+        for (var i = 0; i < elements.length; i++) { elements[i].style.display = ''; }
+        return;
+      }
+
+      for (var j = 0; j < elements.length; j++) {
+        if (elements[j].innerText.toLowerCase().indexOf(query) !== -1) {
+          elements[j].style.display = '';
+        } else {
+          elements[j].style.display = 'none';
+        }
+      }
+    }
+  </script>
+</body>
+</html>
